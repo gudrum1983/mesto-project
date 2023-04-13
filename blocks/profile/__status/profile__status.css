@@ -1,0 +1,30 @@
+.profile__status {
+    width: 336px;
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    grid-column-start: 1;
+    /*grid-column-end:  -1;*/
+    grid-row-start: 2;
+    grid-row-end:  2;
+    /*display: inline;*/
+}
+
+@media screen and (max-width: 710px) {
+    .profile__status{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        grid-column-start: 1;
+        grid-column-end:  -1;
+        grid-row-start: 2;
+        grid-row-end: 2;
+        width: 100%;
+
+    }}

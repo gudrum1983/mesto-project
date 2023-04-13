@@ -1,0 +1,15 @@
+.profile__names-block {
+    /*max-width: 336px;*/
+    display: grid;
+    grid-template-columns: 294px min-content;
+    grid-template-rows: repeat(2, minmax(min-content, max-content));
+    grid-gap: 18px 20px;
+}
+
+@media screen and (max-width: 710px) {
+
+    .profile__names-block {
+        grid-template-columns: 18px auto 18px;
+        grid-gap: 14px 10px;
+    }
+}
