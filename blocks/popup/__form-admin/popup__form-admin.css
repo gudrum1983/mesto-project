@@ -1,6 +1,4 @@
-.card {
-    width: 282px;
-    height: 361px;
+.popup__form-admin {
     display: flex;
     flex-direction: column;
 }

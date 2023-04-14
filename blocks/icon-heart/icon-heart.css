@@ -1,3 +1,7 @@
+.icon-heart {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
 
 .icon-heart:hover {
     cursor: pointer;
@@ -5,5 +9,6 @@
 }
 
 .icon-heart:active {
-    color: black;
-}
+    fill: #000000;
+    opacity: 1;
+   }

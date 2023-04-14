@@ -1,0 +1,26 @@
+.popup__container {
+    padding-left: 40px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: 430px 32px;
+    grid-template-rows: 32px 330px;
+
+    gap: 8px;
+    grid-template-areas:
+    '. buttonp'
+    'popup .'
+}
+
+@media screen and (max-width: 618px) {
+    .popup__container {
+        padding-left: 0;
+        gap: 16px;
+        padding-bottom: 36px;
+        grid-template-columns: 282px;
+        grid-template-rows: 20px 322px;
+        /*justify-items: end;*/
+        grid-template-areas:
+        'buttonp'
+        'popup'
+    }
+}
