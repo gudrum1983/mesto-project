@@ -1,3 +1,4 @@
+/*подключение шрифтов*/
 @import url('../vendor/fonts/fonts.css');
 
 /*подключение стилей всей страницы и переиспользуемых блоков*/
@@ -29,7 +30,6 @@
 @import url('../blocks/profile/__button-add/profile__button-add.css');
 @import url('../blocks/profile/__plus/profile__plus.css');
 @import url('../blocks/profile/__pen/profile__pen.css');
-
 @import url('../blocks/icon-heart/icon-heart.css');
 @import url('../blocks/user-page/user-page.css');
 @import url('../blocks/user-page/__card-grid/user-page__card-grid.css');
