@@ -1,14 +1,14 @@
 .icon-heart {
-    opacity: 1;
-    transition: opacity 0.5s;
+  opacity: 1;
+  transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .icon-heart:hover {
-    cursor: pointer;
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .icon-heart:active {
-    fill: #000000;
-    opacity: 1;
-   }
+  fill: #000000;
+  opacity: 1;
+}

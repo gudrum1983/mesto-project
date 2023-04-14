@@ -1,0 +1,14 @@
+.edit-profile__input-place {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+@media screen and (max-width: 618px) {
+  .edit-profile__input-place {
+    padding-top: 75px;
+    padding-bottom: 45px;
+  }
+}
