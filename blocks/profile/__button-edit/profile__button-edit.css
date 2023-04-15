@@ -9,6 +9,8 @@
   background-color: #000000;
   border: #ffffff solid 1px;
   box-sizing: border-box;
+  /*анулирование стриля из нормалайз*/
+  font-size: 0;
 }
 
 @media screen and (max-width: 710px) {

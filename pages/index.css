@@ -1,5 +1,5 @@
 /*подключение шрифтов и нормалайза*/
-/*@import url('../vendor/normalize.css');*/
+@import url('../vendor/normalize.css');
 @import url('../vendor/fonts/fonts.css');
 
 /*подключение стилей всей страницы и переиспользуемых блоков*/
