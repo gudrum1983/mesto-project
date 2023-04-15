@@ -7,6 +7,7 @@
 @import url('../blocks/button/_type/button_type_light.css');
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
+@import url('../blocks/popup/__background/popup__background.css');
 @import url('../blocks/popup/__container/popup__container.css');
 @import url('../blocks/popup/__button-close/popup__button-close.css');
 @import url('../blocks/popup/__cross/popup__cross.css');
@@ -32,7 +33,7 @@
 @import url('../blocks/profile/__pen/profile__pen.css');
 @import url('../blocks/icon-heart/icon-heart.css');
 @import url('../blocks/user-page/user-page.css');
-@import url('../blocks/user-page/__card-grid/user-page__card-grid.css');
+@import url('../blocks/card-grid/card-grid.css');
 @import url('../blocks/card/card.css');
 @import url('../blocks/card/__photo/card__photo.css');
 @import url('../blocks/card/__caption/card__caption.css');

@@ -14,12 +14,9 @@
 
 @media screen and (max-width: 710px) {
   .profile__status {
-    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    grid-column: 1 / -1;
-    grid-row: 2 / 2;
     width: 100%;
   }
 }

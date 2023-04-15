@@ -17,6 +17,7 @@
 <body class="page">
 
 <div class="popup popup_opened">
+  <div class="popup__background"></div>
   <div class="popup__container">
     <button class="popup__button-close button">
       <svg class="popup__cross" width="32" height="32" viewBox="0 0 32 32" fill="none"
@@ -29,11 +30,8 @@
       <h3 class="popup__header">Редактировать профиль</h3>
       <form class="edit-profile">
         <div class="edit-profile__input-place">
-          <input class="edit-profile__field" type="text" name="user-name" placeholder="Введите своё имя"
-                 value="Домовой Кузя" required>
-          <input class="edit-profile__field" type="text" name="user-status" placeholder="Введите свой статус"
-                 value="Исследователь холодильников"
-                 required>
+          <input class="edit-profile__field" type="text" name="user-name" placeholder="Введите своё имя" required>
+          <input class="edit-profile__field" type="text" name="user-status" placeholder="Введите свой статус" required>
         </div>
         <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
       </form>
