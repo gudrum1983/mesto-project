@@ -1,4 +1,5 @@
-/*подключение шрифтов*/
+/*подключение шрифтов и нормалайза*/
+/*@import url('../vendor/normalize.css');*/
 @import url('../vendor/fonts/fonts.css');
 
 /*подключение стилей всей страницы и переиспользуемых блоков*/
@@ -17,6 +18,8 @@
 @import url('../blocks/edit-profile/__input-place/edit-profile__input-place.css');
 @import url('../blocks/edit-profile/__field/edit-profile__field.css');
 @import url('../blocks/edit-profile/__button-submit/edit-profile__button-submit.css');
+@import url('../blocks/icon-heart/icon-heart.css');
+@import url('../blocks/icon-heart/_active/icon-heart_active.css');
 
 /*подключение стилей блоков*/
 @import url('../blocks/header/header.css');
@@ -31,11 +34,12 @@
 @import url('../blocks/profile/__button-add/profile__button-add.css');
 @import url('../blocks/profile/__plus/profile__plus.css');
 @import url('../blocks/profile/__pen/profile__pen.css');
-@import url('../blocks/icon-heart/icon-heart.css');
+
 @import url('../blocks/user-page/user-page.css');
 @import url('../blocks/card-grid/card-grid.css');
 @import url('../blocks/card/card.css');
 @import url('../blocks/card/__photo/card__photo.css');
 @import url('../blocks/card/__caption/card__caption.css');
-@import url('../blocks/card/__text/card__text.css');
+@import url('../blocks/card/__title/card__title.css');
 @import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');

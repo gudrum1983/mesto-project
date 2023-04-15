@@ -1,15 +1,26 @@
 .profile {
-  display: flex;
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: min-content auto min-content;
+  row-gap: 8px;
+  column-gap: 30px;
+  grid-template-areas:
+    'avatar name_block button'
+    'avatar status     button';
+  align-content: center;
 }
 
 @media screen and (max-width: 710px) {
   .profile {
-    flex-direction: column;
-    gap: 32px;
+    gap: 0;
     width: 282px;
+    grid-template-columns: 282px;
     align-self: center;
+    justify-items: center;
+    grid-template-areas:
+    'avatar'
+    'name_block'
+    'status'
+    'button';
   }
 }

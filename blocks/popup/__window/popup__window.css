@@ -1,4 +1,6 @@
 .popup__window {
+  width: 430px;
+  box-sizing: border-box;
   grid-area: window;
   background-color: white;
   color: #000000;
@@ -6,10 +8,12 @@
   padding: 34px 36px 36px 36px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 618px) {
   .popup__window {
+    width: 100%;
     padding: 25px 22px;
   }
 }

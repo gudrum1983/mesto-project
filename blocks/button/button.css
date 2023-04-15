@@ -2,8 +2,6 @@
   opacity: 1;
   transition: opacity 0.5s;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
 }
 
 .button:hover {

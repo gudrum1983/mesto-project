@@ -1,16 +1,17 @@
 .profile__names-block {
-  display: grid;
-  grid-template-columns: 294px min-content;
-  grid-template-rows: repeat(2, minmax(min-content, max-content));
-  /*в макете указан gap-row 18px но сами блоки не отцентрированны относительно текста, поэтому сделала 10px*/
-  grid-gap: 10px 20px;
+  display: flex;
+  align-content: baseline;
+  gap: 18px;
+  min-width: 0;
 }
 
 @media screen and (max-width: 710px) {
 
   .profile__names-block {
-    grid-template-columns: 18px auto 18px;
-    /*в макете указан gap-row 14px но сами блоки не отцентрированны относительно текста, поэтому сделала 10px*/
-    grid-gap: 10px;
+    justify-content: space-between;
+    gap: 10px;
+    justify-self: stretch;
+    margin-bottom: 10px;
+    box-sizing: border-box;
   }
 }
