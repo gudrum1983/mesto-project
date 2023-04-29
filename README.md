@@ -36,3 +36,8 @@ ___________________________
 ### Ссылки
 * [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 * [Готовый проект на GitHub Pages](https://gudrum1983.github.io/mesto-project/index.html)
+
+
+Рализован плавное открытие и закрытие попапа transition: visibility 0.5s, opacity 0.5s linear;
+Автозаполнение полей попапа при открывании jobInput.value = profileStatus.textContent;
+сделать блокировку прокритки экрана при открытии модального окна

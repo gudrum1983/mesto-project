@@ -26,8 +26,8 @@
       <h3 class="popup__header">Редактировать профиль</h3>
       <form class="edit-profile" name="edit-user-name">
         <div class="edit-profile__input-place">
-          <input class="edit-profile__field" type="text" name="user-name" placeholder="Введите своё имя" required>
-          <input class="edit-profile__field" type="text" name="user-status" placeholder="Введите свой статус" required>
+          <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name" placeholder="Введите своё имя" required>
+          <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status" placeholder="Введите свой статус" required>
         </div>
         <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
       </form>
@@ -35,6 +35,24 @@
   </div>
 </div>
 
+<div class="popup popup_place popup_opened">  <!--popup_opened-->
+  <div class="popup__background"></div>
+  <div class="popup__container">
+    <button class="popup__button-close button" type="button">
+      <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
+    </button>
+    <div class="popup__window">
+      <h3 class="popup__header">Новое место</h3>
+      <form class="edit-profile" name="edit-user-name">
+        <div class="edit-profile__input-place">
+          <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name" placeholder="Название" required>
+          <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status" placeholder="Ссылка на картинку" required>
+        </div>
+        <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <header class="header">
 
@@ -121,6 +139,11 @@
 <footer class="footer">
   <p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
+
+
+
+
+<script src="./index.js"></script>
 
 </body>
 </html>
