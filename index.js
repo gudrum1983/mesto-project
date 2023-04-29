@@ -1,17 +1,13 @@
-let popup = document.querySelector('.popup');
+let popupPr = document.querySelector('.popup_profile');
+let buttonEditPr = document.querySelector('.profile__button-edit');
+let buttonClosePr = document.querySelector('.popup__button-close');
+
+/*открытие попапа профайла*/
 
 
-let buttonClose = document.querySelector('.popup__button-close');
-
-let buttonEdit = document.querySelector('.profile__button-edit');
-let profileName = document.querySelector('.profile__name');
-
-console.log(buttonEdit);
-console.log(profileName);
-
-
-function openPopup() {
-    popup.classList.add('popup_opened');
+buttonEditPr.addEventListener('click', openPopupPr);
+function openPopupPr() {
+    popupPr.classList.add('popup_opened');
     const profileName = document.querySelector('.profile__name');
     const profileStatus = document.querySelector('.profile__status');
 
@@ -21,36 +17,111 @@ function openPopup() {
     jobInput.value = profileStatus.textContent;
 }
 
-buttonEdit.addEventListener('click', openPopup);
 
-function closePopup() {
-    popup.classList.remove('popup_opened');
+
+buttonClosePr.addEventListener('click', closedPopupPr);
+
+
+function closedPopupPr() {
+    popupPr.classList.remove('popup_opened');
 }
 
-buttonClose.addEventListener('click', closePopup);
 
+/*открытие и закрытие попапа картинки*/
+
+const cardsPhoto = document.querySelectorAll('.card__photo');
+const popupImg = document.querySelector('.popup_image')
+const buttonCloseImg = document.querySelector('.popup__button-closeImg');
+
+function openPopupImg() {
+    popupImg.classList.add('popup_opened');
+}
+
+for (let i = 0; i < cardsPhoto.length; i++) {
+    cardsPhoto[i].addEventListener('click', openPopupImg)
+}
+
+
+buttonCloseImg.addEventListener('click', closedPopupImg);
+
+function closedPopupImg() {
+   popupImg.classList.remove('popup_opened')
+}
+
+/*Открытие и закрытие попапа места*/
+
+const buttonPl = document.querySelector('.profile__button-add');
+const popupPl = document.querySelector('.popup_place');
+const buttonClosePl = document.querySelector('.popup__button-closePl');
+
+buttonPl.addEventListener('click', openPopupPl);
+buttonClosePl.addEventListener('click', closedPopupPl);
+
+function openPopupPl() {
+    popupPl.classList.add('popup_opened')
+}
+
+function closedPopupPl() {
+    popupPl.classList.remove('popup_opened')
+}
+
+
+/*сердечки*/
+
+let iconsHeart = document.querySelectorAll('.icon-heart')
+for (let i = 0; i < iconsHeart.length; i++) {
+    iconsHeart[i].addEventListener('click', iconsHeart[i].classList.toggle('icon-heart_active'))
+}
+
+
+let iconHeart = document.querySelector('.icon-heart')
+iconHeart.addEventListener('click', openHeart)
 
 /*
-// Находим форму в DOM
-const formElement = document.querySelector('.popup');
-// Находим поля формы в DOM
-const nameInput = document.querySelector('.edit-profile__field_input_name');
-const jobInput = document.querySelector('.edit-profile__field_input_status');
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-    function handleFormSubmit(evt) {
-        evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-        // Так мы можем определить свою логику отправки.
-        // О том, как это делать, расскажем позже.
+let iconsHeart = document.querySelectorAll('.icon-heart')
 
-        // Получите значение полей jobInput и nameInput из свойства value
+for (let i = 0; i < iconsHeart.length; i++) {
+    iconsHeart[i].addEventListener('click', iconsHeart[i].classList.toggle('icon-heart_active'))
+}
+*/
 
-        // Выберите элементы, куда должны быть вставлены значения полей
+function openHeart() {
+    iconHeart.classList.toggle('icon-heart_active');
+}
 
-        // Вставьте новые значения с помощью textContent
+/*
+for (let i = 0; i < buttonsClose.length; i++) {
+    let buttonClose = buttonsClose[i];
+    buttonClose.addEventListener('click', findParent(buttonClose))
+}
+
+
+function findParent(buttonClose) {
+
+    console.dir(buttonClose)
+
+
+
+    let potentialParent = buttonClose.parentNode;
+    let potentialParent1 = buttonClose.offsetParent;
+    let potentialParent2 = buttonClose.parentNode.parentNode.parentNode;
+
+    if (potentialParent.classList.contains('popup')) {
+
+        console.log(potentialParent.classList);
+        closedPopup(potentialParent);
+    } else if (potentialParent1.classList.contains('popup')) {
+        console.log(potentialParent1.classList);
+        closedPopup(potentialParent1);
+    } else if (potentialParent2.classList.contains('popup')) {
+        console.log(potentialParent2.classList);
+        closedPopup(potentialParent2);
+    } else {
+        console.log(`NOT`);
     }
+}
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', handleFormSubmit);*/
+function closedPopup(element) {
+    element.classList.remove('popup_opened');}
+*/

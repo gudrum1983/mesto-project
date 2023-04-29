@@ -23,3 +23,30 @@
       'window'
   }
 }
+
+.popup_image-cont {
+  z-index: 2;
+  align-self: center;
+  /*width: 100%;*/
+  padding-left: 40px;
+  padding-bottom: 40px;
+  display: grid;
+  gap: 8px;
+
+  grid-template-areas:
+    '. button_close'
+    'window1 .'
+
+}
+
+@media screen and (max-width: 618px) {
+  .popup_image-cont {
+    max-width: 75vw;
+    padding-left: 0;
+    gap: 16px;
+    padding-bottom: 36px;
+    grid-template-areas:
+      'button_close'
+      'window1'
+  }
+}

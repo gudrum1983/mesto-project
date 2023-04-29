@@ -16,7 +16,7 @@
 
 <body class="page">
 
-<div class="popup ">  <!--popup_opened-->
+<div class="popup popup_profile">  <!--popup_opened-->
   <div class="popup__background"></div>
   <div class="popup__container">
     <button class="popup__button-close button" type="button">
@@ -35,10 +35,10 @@
   </div>
 </div>
 
-<div class="popup popup_place popup_opened">  <!--popup_opened-->
+<div class="popup popup_place">  <!--popup_opened-->
   <div class="popup__background"></div>
   <div class="popup__container">
-    <button class="popup__button-close button" type="button">
+    <button class="popup__button-close popup__button-closePl button" type="button">
       <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
     </button>
     <div class="popup__window">
@@ -51,6 +51,20 @@
         <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
       </form>
     </div>
+  </div>
+</div>
+
+<div class="popup popup_image">  <!--popup_opened-->
+  <div class="popup__background popup__background1"></div>
+  <div class="popup_image-cont">
+    <button class="popup__button-close popup__button-closeImg button" type="button">
+      <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
+    </button>
+         <figure class="popup__window1">
+        <img class="photo" src="./images/казань.jpg" alt="Город Казань.">
+        <figcaption class="popup__caption">Казань</figcaption>
+      </figure>
+    <!--</div>-->
   </div>
 </div>
 
