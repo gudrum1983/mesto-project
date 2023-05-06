@@ -24,7 +24,7 @@
     </button>
     <div class="popup__window">
       <h3 class="popup__header">Редактировать профиль</h3>
-      <form class="edit-profile" name="edit-user-name">
+      <form class="edit-profile form_profile" name="edit-user-name" id = "test">
         <div class="edit-profile__input-place">
           <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name" placeholder="Введите своё имя" required>
           <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status" placeholder="Введите свой статус" required>
@@ -43,7 +43,7 @@
     </button>
     <div class="popup__window">
       <h3 class="popup__header">Новое место</h3>
-      <form class="edit-profile" name="edit-user-name">
+      <form class="edit-profile form_place" name="edit-user-name" id = "test2">
         <div class="edit-profile__input-place">
           <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name" placeholder="Название" required>
           <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status" placeholder="Ссылка на картинку" required>
@@ -61,11 +61,8 @@
       <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
     </button>
          <figure class="popup__window1">
-        <!--<img class="photo" src="./images/казань.jpg" alt="Город Казань.">-->
-        <!--<figcaption class="popup__caption">Казань</figcaption>-->
-      </figure>
-    <!--</div>-->
-  </div>
+         </figure>
+    </div>
 </div>
 
 <header class="header">
@@ -84,14 +81,14 @@
 
     <div class="profile__names-block">
       <h1 class="profile__name">Домовой Кузя</h1>
-      <button class="profile__button-edit button" type="button">
+      <button class="profile__button-edit button button_open" type="button" form="test">
         <img src="./images/pen-min.svg" alt="Карандаш." class="profile__pen">
       </button>
     </div>
 
     <p class="profile__status">Исследователь холодильников</p>
 
-    <button class="profile__button-add button" type="button">
+    <button class="profile__button-add button button_open" type="button" form="test2">
       <img src="./images/plus-min.svg" alt="Плюс." class="profile__plus">
     </button>
 
@@ -157,7 +154,9 @@
 
 
 
-<script src="./index.js"></script>
+<script src="scripts/other.js"></script>
+<script src="scripts/close_popup.js"></script>
+<script src="scripts/hearts.js"></script>
 
 </body>
 </html>
