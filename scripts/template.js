@@ -1,89 +1,74 @@
-const addButton = document.querySelector(('.button_add'));
+//CONSTANTS
+const BUTTONS_OPENED_FORM = document.querySelectorAll('.button_open');
+const PROFILE_NAME = document.querySelector('.profile__name');
+const PROFILE_STATUS = document.querySelector('.profile__status');
+const FORM_PROFILE = document.querySelector('.form_profile')
+const INPUT_NAME_FORM_PROFILE = FORM_PROFILE.querySelector('.edit-profile__field_input_name')
+const INPUT_STATUS_FORM_PROFILE = FORM_PROFILE.querySelector('.edit-profile__field_input_status')
+const POPUP_IMG = document.querySelector('.popup-image')
+const POPUP_FIGURE = document.querySelector('.popup__figure');
+const FORM_PLACE = document.querySelector('.form_place')
+const BUTTONS_CLOSED_POPUP = document.querySelectorAll('.popup__button-close');
 
-const initialCards = [
-    {
-        name: 'Хабаровск',
-        link: './images/хабаровск.jpg'
-    },
-    {
-        name: 'Свободный',
-        link: './images/свободный.jpg'
-    },
-    {
-        name: 'Владивосток',
-        link: './images/владивосток.png'
-    },
-    {
-        name: 'Благовещенск',
-        link: './images/благовещенск.jpg'
-    },
-    {
-        name: 'Москва',
-        link: './images/москва.png'
-    },
-    {
-        name: 'Казань',
-        link: './images/казань.jpg'
-    }
-];
 
-initialCards.forEach(function(item) {
-    const img = item.link;
-    const title = item.name;
-    addsCard(img, title);
+
+
+//FUNCTION ADDED CARDS FROM TEMPLATE
+function createCard(srcValue, titleValue) {
+	const cardTemplate = document.querySelector('#itemTemplate').content;
+	const cardContainer = document.querySelector('.card-grid');
+	const cardElement = cardTemplate.cloneNode(true);
+
+	cardElement.querySelector('.card__photo').src = srcValue;
+	cardElement.querySelector('.card__photo').alt = `Визуальное отображение места - ${titleValue}`;
+	cardElement.querySelector('.card__title').textContent = titleValue;
+
+	cardElement.querySelector('.icon-heart').addEventListener('click', toggleLike)
+	cardElement.querySelector('.card__photo').addEventListener('click', openPopupImg);
+	cardElement.querySelector('.trash').addEventListener('click', deleteCard);
+	cardContainer.prepend(cardElement)
+}
+
+//FUNCTION OPEN POPUP ZOOM IMAGE
+function deleteCard(ev) {
+	const itemButton = ev.target;
+	const card = itemButton.closest('.card');
+	card.remove();
+}
+
+
+
+
+
+
+//FUNCTION OPEN POPUP ZOOM IMAGE
+
+
+//
+
+
+//CLOSED POPUP
+
+
+
+
+/******************/
+/****LISTENERS*****/
+/******************/
+
+
+//SUBMIT ADD LISTENER
+
+
+FORM_PROFILE.addEventListener('submit', handleFormSubmitProfile);
+
+BUTTONS_CLOSED_POPUP.forEach(function (item) {
+	item.addEventListener('click', closedPopup);
 });
 
-function addsCard(srcValue, titleValue) {
-    const CARD_TEMPLATE = document.querySelector('#itemTemplate').content;
-    const CARD_CONTAINER = document.querySelector('.card-grid');
-    //const songTemplate = document.querySelector('#song-template').content;
-    const cardElement = CARD_TEMPLATE.cloneNode(true);
-    cardElement.querySelector('.card__photo').src = srcValue;
-    cardElement.querySelector('.card__photo').alt = `Визуальное отображение места с наименованием ${titleValue}`;
-    cardElement.querySelector('.card__title').textContent = titleValue;
+BUTTONS_OPENED_FORM.forEach(function (item) {
+	item.addEventListener('click', openedPopupForm);
+});
 
-   // debugger;
-    cardElement.querySelector('.icon-heart').addEventListener('click', function (event) {
-       const item = event.currentTarget;
-        item.classList.toggle('icon-heart_active');
-    })
-
-    cardElement.querySelector('.card__photo').addEventListener('click', openPopupImg);
-
-    cardElement.querySelector('.trash').addEventListener('click', deleteCard);
-
-
-
-
-
-
-
-    CARD_CONTAINER.prepend(cardElement)
-   // const iconsHeart = cardElement.querySelector('.icon-heart');
-}
-
-const formElementcard = document.querySelector('.form_place')
-const titleInput = formElement.querySelector('.edit-profile__field_input_name')
-const imgInput = formElement.querySelector('.edit-profile__field_input_status')
-
-function handleFormSubmitT(evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-    const itemTerget = evt.target;
-    const parentsItem = itemTerget.closest('.popup');
-    const titleForm = parentsItem.querySelector('.edit-profile__field_input_status');
-    const imgSrcForm = parentsItem.querySelector('.edit-profile__field_input_name');
-
-    addsCard(titleForm.value, imgSrcForm.value);
-    //renderHasCard();
-
-    imgSrcForm.value = '';
-    titleForm.value = '';
-    parentsItem.classList.remove('.popup_opened')
-
-
-    closedPopup(evt);
-
-}
-
-formElementcard.addEventListener('submit', handleFormSubmitT);
+//ADD LISTENER FOR SUBMIT POPUP PLACE
+FORM_PLACE.addEventListener('submit', handleFormSubmitPlace);

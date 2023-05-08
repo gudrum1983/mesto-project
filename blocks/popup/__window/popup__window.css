@@ -18,7 +18,7 @@
   }
 }
 
-.popup__window1 {
+.popup__figure {
   padding: 0;
   margin: 0;
   grid-area: window1;
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 618px) {
-  .popup__window1 {
+  .popup__figure {
 
 /*    padding: 25px 22px;*/
   }

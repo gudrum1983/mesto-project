@@ -27,7 +27,7 @@ function openPopupPr() {
 const cardsPhoto = document.querySelectorAll('.card__photo');
 const popupImg = document.querySelector('.popup_image')
 const buttonCloseImg = document.querySelector('.popup__button-closeImg');
-const popupWindow = document.querySelector('.popup__window1');
+const popupWindow = document.querySelector('.popup__figure');
 const namePlace = document.querySelector('.card__title');
 
 function openPopupImg() {

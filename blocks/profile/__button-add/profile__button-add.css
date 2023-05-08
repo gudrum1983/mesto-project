@@ -8,10 +8,15 @@
   border: #ffffff solid 2px;
   border-radius: 2px;
   align-self: center;
+  background-image: url("../../../images/plus-min.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
 }
 
 @media screen and (max-width: 710px) {
   .profile__button-add {
     width: 282px;
+    background-size: 16px 16px;
   }
 }

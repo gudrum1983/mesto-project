@@ -6,6 +6,11 @@
   grid-area: button_close;
   background-color: transparent;
   border: 0;
+  background-image: url("../../../images/cross-min.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 @media screen and (max-width: 618px) {
