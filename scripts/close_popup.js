@@ -1,49 +1,87 @@
 const PROFILE_NAME = document.querySelector('.profile__name');
 const PROFILE_STATUS = document.querySelector('.profile__status');
 
+const buttonsOpening = document.querySelectorAll('.button_open');
 
+function openedPopup(ev) {
+    //debugger;
+    const evTarget = ev.currentTarget;
+    const idForm = evTarget.form;
+    const a = idForm.closest('.popup')
 
+    if (a.classList.contains('popup_profile')) {
+        const nameInput = document.querySelector('.edit-profile__field_input_name');
+        nameInput.value = PROFILE_NAME.textContent;
+        const jobInput = document.querySelector('.edit-profile__field_input_status');
+        jobInput.value = PROFILE_STATUS.textContent;
+    }
+    a.classList.add('popup_opened')
+};
 
+buttonsOpening.forEach(function (item) {
+    item.addEventListener('click',  openedPopup);
+});
 
 const buttonsClose = document.querySelectorAll('.popup__button-close');
 
-for (let i = 0; i < buttonsClose.length; i++) {
-    buttonsClose[i].addEventListener('click', closedPopup);
-}
-;
+buttonsClose.forEach(function (item) {
+    item.addEventListener('click', closedPopup);
+});
 
-function closedPopup() {
-    let popupParent = this.closest('.popup')
-    popupParent.classList.remove('popup_opened');
+const cardsPhoto = document.querySelectorAll('.card__photo');
+const popupImg = document.querySelector('.popup_image')
+const popupWindow = document.querySelector('.popup__window1');
+
+function openPopupImg() {
+
+    let a = this;
+    let b = a.getAttribute("src");
+    let c = a.parentNode;
+    let d = c.querySelector('.card__title');
+    let e = d.textContent;
+
+    //popupWindow.innerHTML(<img className="photo" src="./images/казань.jpg" alt="Город Казань.">);
+    popupWindow.insertAdjacentHTML('afterbegin', `<img class="photo" src=${b} alt=${e}>
+                                                                    <figcaption class="popup__caption">${e}</figcaption>`);
+
+    popupImg.classList.add('popup_opened');
+}
+
+for (let i = 0; i < cardsPhoto.length; i++) {
+    cardsPhoto[i].addEventListener('click', openPopupImg)
 };
 
 
-// Находим форму в DOM
-const formElement = document.querySelector('.form_profile')
-// Воспользуйтесь методом querySelector()
-// Находим поля формы в DOM
-const nameInput = formElement.querySelector('.edit-profile__field_input_name')
-// Воспользуйтесь инструментом .querySelector()
-const jobInput = formElement.querySelector('.edit-profile__field_input_status')
-// Воспользуйтесь инструментом .querySelector()
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+
+
+function closedPopup(ev) {
+    const evTarget = ev.currentTarget;
+
+    if (evTarget.classList.contains('popup__button-closeImg')) {
+       const ChildrenPopupOne = popupWindow.querySelector('.photo');
+       const ChildrenPopupTwo = popupWindow.querySelector('.popup__caption');
+       popupWindow.removeChild(ChildrenPopupOne);
+       popupWindow.removeChild(ChildrenPopupTwo);
+       popupImg.classList.remove('popup_opened');
+   }
+    const popupParent = evTarget.closest('.popup')
+    popupParent.classList.remove('popup_opened');
+};
+
+const formElement = document.querySelector('.form_profile')
+const nameInput = formElement.querySelector('.edit-profile__field_input_name')
+const jobInput = formElement.querySelector('.edit-profile__field_input_status')
+
 function handleFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    // Так мы можем определить свою логику отправки.
-    // О том, как это делать, расскажем позже.
-
     const ded = nameInput.value;
     const rer = jobInput.value;
-    // Получите значение полей jobInput и nameInput из свойства value
-
     PROFILE_NAME.textContent = ded;
-    // Выберите элементы, куда должны быть вставлены значения полей
     PROFILE_STATUS.textContent = rer;
-    // Вставьте новые значения с помощью textContent
+    const eventTarget = evt.target;
+    closedPopup({},eventTarget)
+
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);

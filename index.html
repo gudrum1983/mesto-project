@@ -1,162 +1,129 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Место</title>
-  <link rel="stylesheet" href="pages/index.css">
-  <meta
-      name="description"
-      content="Описание мест которые можно и стоит поcетить в путешествии по всей России.">
-  <meta
-      name="keywords"
-      content="Путешествие по России, Путешествие от столицы до Байкала">
-  <meta name="author" content="Яндекс Практикум">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Место</title>
+    <link rel="stylesheet" href="pages/index.css">
+    <meta
+            name="description"
+            content="Описание мест которые можно и стоит поcетить в путешествии по всей России.">
+    <meta
+            name="keywords"
+            content="Путешествие по России, Путешествие от столицы до Байкала">
+    <meta name="author" content="Яндекс Практикум">
 </head>
 
 <body class="page">
 
 <div class="popup popup_profile">  <!--popup_opened-->
-  <div class="popup__background"></div>
-  <div class="popup__container">
-    <button class="popup__button-close button" type="button">
-      <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
-    </button>
-    <div class="popup__window">
-      <h3 class="popup__header">Редактировать профиль</h3>
-      <form class="edit-profile form_profile" name="edit-user-name" id = "test">
-        <div class="edit-profile__input-place">
-          <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name" placeholder="Введите своё имя" required>
-          <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status" placeholder="Введите свой статус" required>
+    <div class="popup__background"></div>
+    <div class="popup__container">
+        <button class="popup__button-close button" type="button">
+            <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
+        </button>
+        <div class="popup__window">
+            <h3 class="popup__header">Редактировать профиль</h3>
+            <form class="edit-profile form_profile" name="edit-user-name" id="test">
+                <div class="edit-profile__input-place">
+                    <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name"
+                           placeholder="Введите своё имя" required>
+                    <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status"
+                           placeholder="Введите свой статус" required>
+                </div>
+                <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
+            </form>
         </div>
-        <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
-      </form>
     </div>
-  </div>
 </div>
 
 <div class="popup popup_place">  <!--popup_opened-->
-  <div class="popup__background"></div>
-  <div class="popup__container">
-    <button class="popup__button-close popup__button-closePl button" type="button">
-      <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
-    </button>
-    <div class="popup__window">
-      <h3 class="popup__header">Новое место</h3>
-      <form class="edit-profile form_place" name="edit-user-name" id = "test2">
-        <div class="edit-profile__input-place">
-          <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name" placeholder="Название" required>
-          <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status" placeholder="Ссылка на картинку" required>
+    <div class="popup__background"></div>
+    <div class="popup__container">
+        <button class="popup__button-close popup__button-closePl button" type="button">
+            <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
+        </button>
+        <div class="popup__window">
+            <h3 class="popup__header">Новое место</h3>
+            <form class="edit-profile form_place" name="edit-user-name" id="test2">
+                <div class="edit-profile__input-place">
+                    <input class="edit-profile__field edit-profile__field_input_name" type="text" name="user-name"
+                           placeholder="Название" required>
+                    <input class="edit-profile__field edit-profile__field_input_status" type="text" name="user-status"
+                           placeholder="Ссылка на картинку" required>
+                </div>
+                <button class="edit-profile__button-submit button button_type_light button_add" type="submit">Сохранить</button>
+            </form>
         </div>
-        <button class="edit-profile__button-submit button button_type_light" type="submit">Сохранить</button>
-      </form>
     </div>
-  </div>
 </div>
 
 <div class="popup popup_image">  <!--popup_opened-->
-  <div class="popup__background popup__background1"></div>
-  <div class="popup_image-cont">
-    <button class="popup__button-close popup__button-closeImg button" type="button">
-      <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
-    </button>
-         <figure class="popup__window1">
-         </figure>
+    <div class="popup__background popup__background1"></div>
+    <div class="popup_image-cont">
+        <button class="popup__button-close popup__button-closeImg button" type="button">
+            <img src="./images/cross-min.svg" alt="крестик" class="popup__cross">
+        </button>
+        <figure class="popup__window1">
+        </figure>
     </div>
 </div>
 
 <header class="header">
 
-  <img src="./images/logo-min.svg" alt="Логотип в форме контурной карты России с надписью Россия на английском языке."
-       class="header__logo">
+    <img src="./images/logo-min.svg" alt="Логотип в форме контурной карты России с надписью Россия на английском языке."
+         class="header__logo">
 
 </header>
 
 
 <main class="user-page">
 
-  <section class="profile">
+    <section class="profile">
 
-    <img src="./images/domovenok-kuzya1.png" alt="Аватарка пользователя" class="profile__avatar">
+        <img src="./images/domovenok-kuzya1.png" alt="Аватарка пользователя" class="profile__avatar">
 
-    <div class="profile__names-block">
-      <h1 class="profile__name">Домовой Кузя</h1>
-      <button class="profile__button-edit button button_open" type="button" form="test">
-        <img src="./images/pen-min.svg" alt="Карандаш." class="profile__pen">
-      </button>
-    </div>
+        <div class="profile__names-block">
+            <h1 class="profile__name">Домовой Кузя</h1>
+            <button class="profile__button-edit button button_open" type="button" form="test">
+                <img src="./images/pen-min.svg" alt="Карандаш." class="profile__pen">
+            </button>
+        </div>
 
-    <p class="profile__status">Исследователь холодильников</p>
+        <p class="profile__status">Исследователь холодильников</p>
 
-    <button class="profile__button-add button button_open" type="button" form="test2">
-      <img src="./images/plus-min.svg" alt="Плюс." class="profile__plus">
-    </button>
+        <button class="profile__button-add button button_open" type="button" form="test2">
+            <img src="./images/plus-min.svg" alt="Плюс." class="profile__plus">
+        </button>
 
-  </section>
+    </section>
 
-  <section class="card-grid">
+    <section class="card-grid">
 
-    <div class="card">
-      <img class="card__photo" src="./images/хабаровск.jpg" alt="Город Хабаровск.">
-      <div class="card__caption">
-        <h2 class="card__title">Хабаровск</h2>
-        <button class="icon-heart icon-heart_active button" type="button"></button>
-      </div>
-    </div>
+        <template id="itemTemplate">
+            <div class="card">
+                <img class="card__photo" alt="">
+                <div class="card__caption">
+                    <h2 class="card__title"></h2>
+                    <button class="icon-heart button" type="button"></button> <!--icon-heart_active-->
+                </div>
+            </div>
+        </template>
 
-    <div class="card">
-      <img class="card__photo" src="./images/свободный.jpg" alt="Город Свободный.">
-      <div class="card__caption">
-        <h2 class="card__title">Свободный</h2>
-        <button class="icon-heart button" type="button"></button>
-      </div>
-    </div>
 
-    <div class="card">
-      <img class="card__photo" src="./images/владивосток.png" alt="Город Владивосток.">
-      <div class="card__caption">
-        <h2 class="card__title">Владивосток</h2>
-        <button class="icon-heart button" type="button"></button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card__photo" src="./images/благовещенск.jpg" alt="Город Благовещенск.">
-      <div class="card__caption">
-        <h2 class="card__title">Благовещенск</h2>
-        <button class="icon-heart button" type="button"></button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card__photo" src="./images/москва.png" alt="Город Москва.">
-      <div class="card__caption">
-        <h2 class="card__title">Москва</h2>
-        <button class="icon-heart icon-heart_active button" type="button"></button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card__photo" src="./images/казань.jpg" alt="Город Казань.">
-      <div class="card__caption">
-        <h2 class="card__title">Казань</h2>
-        <button class="icon-heart icon-heart_active button" type="button"></button>
-      </div>
-    </div>
-  </section>
+    </section>
 
 </main>
 
 <footer class="footer">
-  <p class="footer__copyright">© 2020 Mesto Russia</p>
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
 
 
-
-
-<script src="scripts/other.js"></script>
+<!--<script src="scripts/old.js"></script>-->
 <script src="scripts/close_popup.js"></script>
 <script src="scripts/hearts.js"></script>
+<script src="scripts/template.js"></script>
 
 </body>
 </html>

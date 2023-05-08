@@ -70,7 +70,7 @@ const popupPl = document.querySelector('.popup_place');
 const buttonClosePl = document.querySelector('.popup__button-closePl');
 
 buttonPl.addEventListener('click', openPopupPl);
-//buttonClosePl.addEventListener('click', closedPopupPl);
+buttonClosePl.addEventListener('click', closedPopupPl);
 
 function openPopupPl() {
     popupPl.classList.add('popup_opened')
