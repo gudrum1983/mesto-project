@@ -11,12 +11,37 @@
   cursor: pointer;
 }
 
-.icon-heart:hover {
+/*.icon-heart:hover {
   opacity: 0.5;
-}
+}*/
 
+/*
 .icon-heart:active {
   fill: #000000;
   opacity: 1;
   background-image: url("../../images/fill_heart-min.svg");
+}*/
+
+
+.trash {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  background-image: url("../../images/trash.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+  opacity: 1;
+  transition: opacity 0.5s;
+  cursor: pointer;
 }
+
+/*
+.icon-heart:hover {
+  opacity: 0.5;
+}*/

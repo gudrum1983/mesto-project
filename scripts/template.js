@@ -50,7 +50,7 @@ function addsCard(srcValue, titleValue) {
 
     cardElement.querySelector('.card__photo').addEventListener('click', openPopupImg);
 
-
+    cardElement.querySelector('.trash').addEventListener('click', deleteCard);
 
 
 
