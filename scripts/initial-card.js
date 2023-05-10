@@ -1,4 +1,5 @@
-const INITIAL_CARDS = [
+//МАССИВ 6 МЕСТ ЗАГРУЖЕННЫХ ПО УМОЛЧАНИЮ
+const initialCard = [
 	{
 		name: 'Хабаровск',
 		link: './images/хабаровск.jpg'
@@ -25,9 +26,9 @@ const INITIAL_CARDS = [
 	}
 ];
 
-//CYCLE ARRAY FOR ADD CARD
-INITIAL_CARDS.forEach(function (item) {
-	const imgCard = item.link;
-	const title = item.name;
-	createCard(imgCard, title);
+//ОБХОД МАССИВА В ЦИКЛЕ ДЛЯ ДОБАВЛЕНИЯ НОВЫХ КАРТ
+	initialCard.forEach(function (card) {
+	const imgCard = card.link;
+	const titleCard = card.name;
+	createCard(imgCard, titleCard);
 });
