@@ -1,16 +1,12 @@
 .profile__button-edit {
   height: 24px;
   min-width: 24px;
-  object-fit: cover;
-  object-position: center;
   padding: 0;
   margin: 0 0 8px;
   align-self: end;
   background-color: #000000;
   border: 1px solid #ffffff;
   background-image: url("../../../images/pen-min.svg");
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: 10px 10px;
   /*анулирование стриля из нормалайз*/
   font-size: 0;

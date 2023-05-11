@@ -1,26 +1,24 @@
-.popup__container {
-  z-index: 2;
-  /*width: 100%;
-  max-width: 470px;*/
+.popup__container-img {
+  /*z-index: 2;
   align-self: center;
   padding-left: 40px;
   padding-bottom: 40px;
   display: grid;
-  gap: 8px;
+  gap: 8px;*/
   grid-template-areas:
     '. button_close'
-    'window .'
+    'figure .'
 }
 
 @media screen and (max-width: 618px) {
-  .popup__container {
-    /*width: 100%;
-    max-width: 282px;*/
-    padding-left: 0;
+  .popup__container-img {
+    /*width: 100%;*/
+    max-width: 75vw;
+   /* padding-left: 0;
     gap: 16px;
-    padding-bottom: 36px;
+    padding-bottom: 36px;*/
     grid-template-areas:
       'button_close'
-      'window'
+      'figure'
   }
 }
