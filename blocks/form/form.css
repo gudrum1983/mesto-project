@@ -1,4 +1,4 @@
-.popup__window {
+.form {
   width: 430px;
   box-sizing: border-box;
   grid-area: window;
@@ -12,8 +12,8 @@
 }
 
 @media screen and (max-width: 618px) {
-  .popup__window {
-    width: 100%;
+  .form {
+    width: 282px;
     padding: 25px 22px;
   }
 }

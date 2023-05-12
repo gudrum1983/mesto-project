@@ -1,7 +1,9 @@
-.popup__figure {
+.zoom {
+  max-width: 75vw;
+  max-height: 75vh;
   padding: 0;
   margin: 0;
-  grid-area: figure;
+  grid-area: window;
   object-fit: cover;
   display: flex;
   flex-direction: column;

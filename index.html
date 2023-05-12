@@ -17,40 +17,40 @@
 <body class="page">
 
 <div class="popup popup_type_profile">
-  <div class="popup__background"></div>
-  <div class="popup__container popup__container_type_form">
+  <div class="popup__shadow"></div>
+  <div class="popup__container">
     <button class="popup__button-close button" type="button"></button>
-    <div class="popup__window">
-      <h3 class="popup__header">Редактировать профиль</h3>
-      <form class="popup__form" name="edit-user-name" id="form-profile">
-        <div class="popup__input-place">
-          <input class="popup__field" type="text"
+    <div class="form">
+      <h3 class="form__header">Редактировать профиль</h3>
+      <form class="form__admin" name="edit-user-name" id="form-profile">
+        <div class="form__input-place">
+          <input class="form__field" type="text"
                  name="user-name"
                  placeholder="Введите своё имя" required>
-          <input class="popup__field" type="text"
+          <input class="form__field" type="text"
                  name="user-status"
                  placeholder="Введите свой статус" required>
         </div>
-        <button class="popup__button-submit button button_type_light" type="submit">Сохранить</button>
+        <button class="form__button-submit button button_type_dark" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
 </div>
 
 <div class="popup popup_type_place">
-  <div class="popup__background"></div>
-  <div class="popup__container popup__container_type_form">
-    <button class="popup__button-close popup__button-closePl button" type="button"></button>
-    <div class="popup__window">
-      <h3 class="popup__header">Новое место</h3>
-      <form class="popup__form" name="edit-place" id="form-place">
-        <div class="popup__input-place">
-          <input class="popup__field" type="text" name="title"
+  <div class="popup__shadow"></div>
+  <div class="popup__container">
+    <button class="popup__button-close button" type="button"></button>
+    <div class="form">
+      <h3 class="form__header">Новое место</h3>
+      <form class="form__admin" name="edit-place" id="form-place">
+        <div class="form__input-place">
+          <input class="form__field" type="text" name="title"
                  placeholder="Название" required>
-          <input class="popup__field" type="text" name="link-img"
+          <input class="form__field" type="text" name="link-img"
                  placeholder="Ссылка на картинку" required>
         </div>
-        <button class="popup__button-submit button button_type_light" type="submit">
+        <button class="form__button-submit button button_type_dark" type="submit">
           Сохранить
         </button>
       </form>
@@ -59,12 +59,12 @@
 </div>
 
 <div class="popup popup_type_zoom">
-  <div class="popup__background popup__background_type_dark"></div>
-  <div class="popup__container popup__container-img">
+  <div class="popup__shadow popup__shadow_type_dark"></div>
+  <div class="popup__container">
     <button class="popup__button-close button" type="button"></button>
-    <figure class="popup__figure">
-      <img class="popup__photo" src="#" alt="">
-      <figcaption class="popup__caption"></figcaption>
+    <figure class="zoom">
+      <img class="zoom__photo" src="#" alt="">
+      <figcaption class="zoom__caption"></figcaption>
     </figure>
   </div>
 </div>
@@ -117,4 +117,3 @@
 
 </body>
 </html>
-

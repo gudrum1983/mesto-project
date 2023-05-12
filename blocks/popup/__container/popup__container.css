@@ -1,7 +1,5 @@
 .popup__container {
   z-index: 2;
-  /*width: 100%;
-  max-width: 470px;*/
   align-self: center;
   padding-left: 40px;
   padding-bottom: 40px;
@@ -14,8 +12,6 @@
 
 @media screen and (max-width: 618px) {
   .popup__container {
-    /*width: 100%;
-    max-width: 282px;*/
     padding-left: 0;
     gap: 16px;
     padding-bottom: 36px;

@@ -14,11 +14,10 @@ const nameUser = profileUser.querySelector('.profile__name');
 const statusUser = profileUser.querySelector('.profile__status');
 
 const popupZoom = document.querySelector('.popup_type_zoom');
-const imgPopupZoom = popupZoom.querySelector('.popup__photo');
-const titlePopupZoom = popupZoom.querySelector('.popup__caption');
+const imgPopupZoom = popupZoom.querySelector('.zoom__photo');
+const titlePopupZoom = popupZoom.querySelector('.zoom__caption');
 
 const buttonsClose = document.querySelectorAll('.popup__button-close');
-
 const buttonsOpenForm = document.querySelectorAll('.button_open');
 
 const initialCard = [
@@ -78,9 +77,9 @@ function openPopupZoom(evt) {
   const card = imgTarget.parentNode;
   const title = card.querySelector('.card__title');
   const titleText = title.textContent;
-  imgPopupZoom.setAttribute('alt', imgAlt)
-  imgPopupZoom.setAttribute('src', imgLink)
-  titlePopupZoom.textContent = titleText
+  imgPopupZoom.setAttribute('alt', imgAlt);
+  imgPopupZoom.setAttribute('src', imgLink);
+  titlePopupZoom.textContent = titleText;
   popupZoom.classList.add('popup_opened');
 };
 
@@ -126,11 +125,9 @@ function createCard(srcValue, titleValue) {
   const cardTemplate = document.querySelector('#itemTemplate').content;
   const cardContainer = document.querySelector('.card-grid');
   const cardElement = cardTemplate.cloneNode(true);
-
   cardElement.querySelector('.card__photo').src = srcValue;
   cardElement.querySelector('.card__photo').alt = `Визуальное отображение места - ${titleValue}`;
   cardElement.querySelector('.card__title').textContent = titleValue;
-
   cardElement.querySelector('.card__like').addEventListener('click', toggleLike)
   cardElement.querySelector('.card__photo').addEventListener('click', openPopupZoom);
   cardElement.querySelector('.card__trash').addEventListener('click', deleteCard);
