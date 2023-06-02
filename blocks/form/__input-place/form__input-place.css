@@ -3,7 +3,7 @@
   padding-bottom: 48px;
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 13px;
 }
 
 @media screen and (max-width: 618px) {

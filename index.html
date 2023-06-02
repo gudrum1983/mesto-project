@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Место</title>
-  <link rel="stylesheet" href="pages/index.css">
+  <!--<link rel="stylesheet" href="pages/index.css">-->
   <meta
       name="description"
       content="Описание мест которые можно и стоит поcетить в путешествии по всей России.">
@@ -22,16 +22,28 @@
     <button class="popup__button-close button" type="button"></button>
     <div class="form">
       <h3 class="form__header">Редактировать профиль</h3>
-      <form class="form__admin" name="profile-form" id="form-profile">
+      <form class="form__admin" name="profile-form" id="form-profile" novalidate>
         <div class="form__input-place">
-          <input class="form__field" type="text"
-                 name="user-name"
-                 placeholder="Введите своё имя" required>
-          <input class="form__field" type="text"
-                 name="user-status"
-                 placeholder="Введите свой статус" required>
+          <label class="form__field">
+            <input class="form__input" type="text"
+                   name="user-name" id="name-input"
+                   placeholder="Введите своё имя" minlength="2" maxlength="40" required
+                   pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+                   data-error-message="Разрешены только буквы латинского и кириллического алфавитов в любом регистре, пробелы и дефисы">
+            <span class="name-input-error"></span>
+          </label>
+
+          <label class="form__field">
+            <input class="form__input" type="text"
+                   name="user-status" id="status-input"
+                   placeholder="Введите свой статус" minlength="2" maxlength="200" required
+                   pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+                   data-error-message="Разрешены только буквы латинского и кириллического алфавитов в любом регистре, пробелы и дефисы">
+            <span class="status-input-error"></span>
+          </label>
         </div>
         <button class="form__button-submit button button_type_dark" type="submit">Сохранить</button>
+        <!--form__button-submit_type_disable   disabled-->
       </form>
     </div>
   </div>
@@ -43,12 +55,21 @@
     <button class="popup__button-close button" type="button"></button>
     <div class="form">
       <h3 class="form__header">Новое место</h3>
-      <form class="form__admin" name="card-form" id="form-place">
+      <form class="form__admin" name="card-form" id="form-place" novalidate>
         <div class="form__input-place">
-          <input class="form__field" type="text" name="title"
-                 placeholder="Название" required>
-          <input class="form__field" type="text" name="link-img"
-                 placeholder="Ссылка на картинку" required>
+          <label class="form__field">
+            <input class="form__input" type="text" name="title"
+                   placeholder="Название" required minlength="2" maxlength="30"
+                   required pattern="^[A-Za-zА-Яа-яЁё\s\-]+$" id="place-input"
+                   data-error-message="Разрешены только буквы латинского и кириллического алфавитов в любом регистре, пробелы и дефисы">
+            <span class="place-input-error"></span>
+          </label>
+
+          <label class="form__field">
+            <input class="form__input" type="url" name="link-img" id="link-input"
+                   placeholder="Ссылка на картинку" required>
+            <span class="link-input-error"></span>
+          </label>
         </div>
         <button class="form__button-submit button button_type_dark" type="submit">
           Сохранить
@@ -71,7 +92,8 @@
 
 <header class="header">
 
-  <img src="./images/logo-min.svg" alt="Логотип в форме контурной карты России с надписью Россия на английском языке."
+  <img src="<%=require('/images/logo-min.svg')%>"
+       alt="Логотип в форме контурной карты России с надписью Россия на английском языке."
        class="header__logo">
 
 </header>
@@ -81,7 +103,7 @@
 
   <section class="profile">
 
-    <img src="images/domovenok.png" alt="Аватарка пользователя" class="profile__avatar">
+    <img src="<%=require('/images/domovenok.png')%>" alt="Аватарка пользователя" class="profile__avatar">
 
     <div class="profile__names-block">
       <h1 class="profile__name">Домовой Кузя</h1>
@@ -113,7 +135,7 @@
   <p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
 
-<script src="scripts/popup-form.js"></script>
+<script type="module" src="src/index.js"></script>
 
 </body>
 </html>

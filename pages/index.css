@@ -8,6 +8,7 @@
 @import url('../blocks/button/button.css');
 @import url('../blocks/button/_type/button_type_dark.css');
 
+
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__shadow/popup__shadow.css');
@@ -21,6 +22,7 @@
 @import url('../blocks/form/__input-place/form__input-place.css');
 @import url('../blocks/form/__field/form__field.css');
 @import url('../blocks/form/__button-submit/form__button-submit.css');
+@import url('../blocks/form/__button-submit/_type/form__button-submit_type_disable.css');
 
 @import url('../blocks/card/card.css');
 @import url('../blocks/card/__photo/card__photo.css');

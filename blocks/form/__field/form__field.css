@@ -1,4 +1,12 @@
 .form__field {
+  display: flex;
+  row-gap: 5px;
+  flex-direction: column;
+}
+
+
+
+.form__input {
   margin: 0;
   padding: 0 0 10px;
   font-weight: 400;
@@ -8,4 +16,31 @@
   color: #000000;
   border-bottom: 1px solid #00000033;
   font-style: normal;
+  /*width: 100%;*/
+}
+
+.form__input_type_error {
+  border-bottom-color: #ff0000; /* красная рамка для некорректных данных */
+}
+
+
+.form__input_type_error:focus-visible {
+  outline-color: #ff0000;
+}
+
+/*.form__input:invalid {
+  border-bottom: 1px solid red; !* красная рамка для некорректных данных *!
+}
+
+.form__input:valid {
+  border-bottom: 1px solid green; !* зелёная - для корректных *!
+}*/
+
+.form__input-error_active {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  /*width: 100%;*/
 }
