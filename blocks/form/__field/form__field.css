@@ -23,18 +23,9 @@
   border-bottom-color: #ff0000; /* красная рамка для некорректных данных */
 }
 
-
 .form__input_type_error:focus-visible {
   outline-color: #ff0000;
 }
-
-/*.form__input:invalid {
-  border-bottom: 1px solid red; !* красная рамка для некорректных данных *!
-}
-
-.form__input:valid {
-  border-bottom: 1px solid green; !* зелёная - для корректных *!
-}*/
 
 .form__input-error_active {
   font-style: normal;
