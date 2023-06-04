@@ -1,14 +1,13 @@
 //ИМПОРТЫ
 import '/src/pages/index.css'; // импорт главного файла стилей
-import {classSelectorsForValid, cardContainer, formProfile} from "./utils";
-import {openPopup, handleFormSubmitProfile, openProfilePopup} from './modal.js';
-import {handleFormSubmitPlace, formPlace, popupPlace, handleCardClickGeneral} from './сard.js';
+import {classSelectorsForValid, cardContainer, formProfile, popupPlace, formPlace} from "./utils";
+import {openPopup, handleFormSubmitProfile, openProfilePopup, handleFormSubmitPlace} from './modal.js';
+import {handleCardClickGeneral} from './сard.js';
 import {enableValidation} from "./validate";
 
 //КОНСТАНТЫ
 const openPopupProfileButton = document.querySelector('.profile__button-edit');
 const openPopupPlaceButton = document.querySelector('.profile__button-add');
-
 
 //СЛУШАТЕЛИ
 openPopupProfileButton.addEventListener('click', openProfilePopup);
@@ -19,4 +18,3 @@ cardContainer.addEventListener('click', handleCardClickGeneral)
 
 //ВЫЗОВ ФУНКЦИИ ДЛЯ ВАЛИДАЦИИ
 enableValidation(classSelectorsForValid);
-

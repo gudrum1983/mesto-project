@@ -1,3 +1,4 @@
+//ИМПОРТЫ
 import khabImage from '/src/images/хабаровск.jpg';
 import svobImage from '/src/images/свободный.jpg';
 import vladImage from '/src/images/владивосток.png';
@@ -5,6 +6,7 @@ import blagImage from '/src/images/благовещенск.jpg';
 import mosImage from '/src/images/москва.png';
 import kazImage from '/src/images/казань.jpg';
 
+//КОНСТАНТЫ
 const initialCard = [
   {
     name: 'Хабаровск',
@@ -32,9 +34,6 @@ const initialCard = [
   }
 ];
 
-/** @constant
- *     @type {object}
- */
 const classSelectorsForValid = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -43,9 +42,11 @@ const classSelectorsForValid = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 };
-
 const formProfile = document.forms["profile-form"];
-
 const cardContainer = document.querySelector('.card-grid');
+const popupPlace = document.querySelector('.popup_type_place');
+const formPlace = document.forms["card-form"];
 
-export {initialCard, classSelectorsForValid, cardContainer, formProfile};
+
+//ЭКСПОРТ
+export {initialCard, classSelectorsForValid, cardContainer, formProfile, popupPlace, formPlace};

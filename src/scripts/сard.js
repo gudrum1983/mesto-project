@@ -1,22 +1,15 @@
-import {initialCard, cardContainer} from "./utils";
-import {closePopup} from "./modal";
+//ИМПОРТЫ
+import {initialCard, cardContainer, popupPlace} from "./utils";
 import {openPopup} from "./modal";
 
+//КОНСТАНТЫ
 const cardTemplate = document.querySelector('#itemTemplate').content;
-
 const popupZoom = document.querySelector('.popup_type_zoom');
 const imgPopupZoom = popupZoom.querySelector('.zoom__photo');
 const titlePopupZoom = popupZoom.querySelector('.zoom__caption');
 
-const formPlace = document.forms["card-form"];
-const titleInputFormPlace = formPlace.querySelector('[name="title"]');
-const linkInputFormPlace = formPlace.querySelector('[name="link-img"]');
-const popupPlace = document.querySelector('.popup_type_place');
-
-
 /**
- * ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ МЕСТА ПО ШАБЛОНУ
- *
+ * Функция __getCard()__ создает карточку по шаблону
  *  @param {string} srcValue - ссылка на изображение
  *  @param {string} titleValue - наименование места
  */
@@ -30,8 +23,7 @@ function getCard(srcValue, titleValue) {
 }
 
 /**
- * ФУНКЦИЯ ДОБАВЛЕНИЯ КАРТОЧКИ
- *
+ * Функция __createCard()__ добавляет карточку в контейнер
  *  @param {string} srcValue - ссылка на изображение
  *  @param {string} titleValue - наименование места
  */
@@ -41,26 +33,9 @@ function createCard(srcValue, titleValue) {
 };
 
 /**
- * ЦИКЛ ОБРАБОТКИ НАЧАЛЬНЫХ КАРТОЧЕК МЕСТ
- */
-initialCard.forEach(function (card) {
-  createCard(card.link, card.name);
-});
-
-/*
- * ФУНКЦИЯ ИЗМЕНЕНИЯ ПОВЕДЕНИЯ SUBMIT ФОРМЫ В ПОПАПЕ PLACE
- */
-function handleFormSubmitPlace(evt) {
-  evt.preventDefault();
-  createCard(linkInputFormPlace.value, titleInputFormPlace.value);
-  evt.target.reset()
-  closePopup(popupPlace);
-};
-
-
-/**
- * Функция открывает модальное окно просмотра изображения заполняя атрибуты блока <img> и
- * текст блока <figcaption> значениями переданными в параметрах
+ * Функция __openZoom()__ открывает модальное окно просмотра изображения
+ * заполняя атрибуты блока <img> и текст блока <figcaption> значениями
+ * переданными в параметрах
  * @param {String} srcValue - ссылка на изображение
  * @param {String} titleValue - ссылка на изображение
  */
@@ -71,9 +46,9 @@ function openZoom(srcValue, titleValue) {
   openPopup(popupZoom)
 };
 
-
 /**
- * Функция удаляет элемент (родитель с классом card) для элемента переданного параметром
+ * Функция __deleteCard()__ удаляет элемент (родитель с классом card)
+ * для элемента переданного параметром
  *  @param {Element} buttonTrash - дом элемент кнопка удаления карточки
  */
 function deleteCard(buttonTrash) {
@@ -82,7 +57,7 @@ function deleteCard(buttonTrash) {
 };
 
 /**
- * Функция переключает класс активности у элемента переданного параметром
+ * Функция __toggleLike()__ переключает класс активности у элемента переданного параметром
  * @param {Element} like - элемент лайк
  */
 function toggleLike(like) {
@@ -90,7 +65,7 @@ function toggleLike(like) {
 };
 
 /**
- * Функция-диспетчер события нажатия на карточку.
+ * Функция-диспетчер __handleCardClickGeneral()__ события нажатия на карточку.
  * Определяет обработку события в зависимости от класса target:
  * card\_\_like, card\_\_trash или card\_\_photo
  * @param {Event} evt - событие нажатия клика на карточку
@@ -102,8 +77,14 @@ function handleCardClickGeneral(evt) {
   } else if (evTarget.classList.contains('card__trash')) {
     deleteCard(evTarget);
   } else if (evTarget.classList.contains('card__photo')) {
-    openZoom(evTarget.src,evTarget.alt);
+    openZoom(evTarget.src, evTarget.alt);
   }
 };
 
-export {handleFormSubmitPlace, formPlace, popupPlace, handleCardClickGeneral};
+//ЦИКЛ ОБРАБОТКИ НАЧАЛЬНЫХ КАРТОЧЕК МЕСТ
+initialCard.forEach(function (card) {
+  createCard(card.link, card.name);
+});
+
+//ЭКСПОРТ
+export {popupPlace, handleCardClickGeneral};
