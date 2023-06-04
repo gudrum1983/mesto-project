@@ -29,7 +29,7 @@
                    placeholder="Введите своё имя" minlength="2" maxlength="40" required
                    pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
                    data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
-            <span class="name-input-error"></span>
+            <span class="form__error name-input-error"></span>
           </label>
 
           <label class="form__field">
@@ -38,7 +38,7 @@
                    placeholder="Введите свой статус" minlength="2" maxlength="200" required
                    pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
                    data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
-            <span class="status-input-error"></span>
+            <span class="form__error status-input-error"></span>
           </label>
         </div>
         <button class="form__button-submit button button_type_dark" type="submit">Сохранить</button>
@@ -60,13 +60,13 @@
                    placeholder="Название" required minlength="2" maxlength="30"
                    pattern="^[A-Za-zА-Яа-яЁё\s\-]+$" id="place-input"
                    data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
-            <span class="place-input-error"></span>
+            <span class="form__error place-input-error"></span>
           </label>
 
           <label class="form__field">
             <input class="form__input" type="url" name="link-img" id="link-input"
                    placeholder="Ссылка на картинку" required>
-            <span class="link-input-error"></span>
+            <span class="form__error link-input-error"></span>
           </label>
         </div>
         <button class="form__button-submit button button_type_dark" type="submit">

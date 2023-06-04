@@ -2,7 +2,6 @@ import {initialCard, cardContainer} from "./utils";
 import {closePopup} from "./modal";
 import {openPopup} from "./modal";
 
-/*const cardContainer = document.querySelector('.card-grid');*/
 const cardTemplate = document.querySelector('#itemTemplate').content;
 
 const popupZoom = document.querySelector('.popup_type_zoom');

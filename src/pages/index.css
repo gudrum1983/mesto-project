@@ -23,7 +23,7 @@
 @import url('../blocks/form/__field/form__field.css');
 @import url('../blocks/form/__input/form__input.css');
 @import url('../blocks/form/__input/_type/form__input_type_error.css');
-@import url('../blocks/form/__input-error/_active/form__input-error_active.css');
+@import url('../blocks/form/__error/_active/form__error_active.css');
 @import url('../blocks/form/__button-submit/form__button-submit.css');
 @import url('../blocks/form/__button-submit/_type/form__button-submit_type_disable.css');
 

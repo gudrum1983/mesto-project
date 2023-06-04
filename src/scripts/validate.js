@@ -1,28 +1,40 @@
-//*************************************************************************************************
-//ФУНКЦИЯ СКРЫТЬ ОШИБКУ ПОЛЯ ИНПУТ
-//*************************************************************************************************
+/**
+ * Функция __hideInputError()__ показывает ошибку
+ *  @param {Element} formElement - массив
+ *  @param {Element} inputElement - кнопка сабмит
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
 function hideInputError(formElement, inputElement, parameters) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(parameters.inputErrorClass);
   errorElement.classList.remove(parameters.errorClass);
   errorElement.textContent = '';
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*************************************************************************************************
-//ФУНКЦИЯ ПОКАЗАТЬ ОШИБКУ ПОЛЯ ИНПУТ
-//*************************************************************************************************
+/**
+ * Функция __showInputError()__ показывает ошибку
+ *  @param {Element} formElement - массив
+ *  @param {Element} inputElement - кнопка сабмит
+ *  @param {String} errorMessage - строка с текстом ошибки
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
 function showInputError(formElement, inputElement, errorMessage, parameters) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(parameters.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(parameters.errorClass);
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*************************************************************************************************
-//ФУНКЦИЯ ПРОВЕРКИ НА ВАЛИДНОСТЬ ОДНОГО ПОЛЯ ИНПУТ
-//*************************************************************************************************
+/**
+ * Функция __isValid()__ обрабатывает поля ввода и текстовые ошибки к ним в зависимости от значения
+ * валидности полей. Показывает и скрывает элементы ошибок
+ *  @param {Element} formElement - массив
+ *  @param {Element} inputElement - кнопка сабмит
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
 function isValid(formElement, inputElement, parameters) {
   if (inputElement.validity.patternMismatch) {
     inputElement.setCustomValidity(inputElement.dataset.errorMessage);
@@ -36,21 +48,26 @@ function isValid(formElement, inputElement, parameters) {
     hideInputError(formElement, inputElement, parameters);
   }
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*************************************************************************************************
-//ФУНКЦИЯ ПРОВЕРКИ НА ВАЛИДНОСТЬ ВСЕХ ПОЛЕЙ ФОРМЫ
-//*************************************************************************************************
+/**
+ * Функция __hasInvalidInput()__ обрабатывает полученный массив полей на валидность
+ * @return {boolean} - возвращает true если хоть одно поле невалидно
+ * @param {Array} inputList - массив
+ */
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*************************************************************************************************
-//ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ АКТИВНОСТИ КНОПКИ САБМИТ
-//*************************************************************************************************
+/**
+ * Функция __toggleButtonState()__ обрабатывает кнопку сабмит в зависимости от
+ * значения валидности полей формы
+ *  @param {Array} inputList - массив
+ *  @param {Element} buttonElement - кнопка сабмит
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
 function toggleButtonState(inputList, buttonElement, parameters) {
   if (hasInvalidInput(inputList)) {
     buttonElement.setAttribute('disabled', true);
@@ -60,11 +77,14 @@ function toggleButtonState(inputList, buttonElement, parameters) {
     buttonElement.classList.remove(parameters.inactiveButtonClass);
   }
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*************************************************************************************************
-//ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ АКТИВНОСТИ КНОПКИ САБМИТ
-//*************************************************************************************************
+/**
+ * Функция __setEventListeners()__ добавляет слушателей на поля ввода
+ *  где обрабатываются найденные в форме поля ввода и кнопка сабмит.
+ *  @param {Element} formElement - форма
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
 function setEventListeners(formElement, parameters) {
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
   const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
@@ -76,14 +96,11 @@ function setEventListeners(formElement, parameters) {
   });
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 /**
- * ФУНКЦИЯ валидации полей форм
- *
- *  @param {Object} classSelectorsForValid - объект с перечислением селекторов классов
- *  для подставновки и поиска
+ *  Функция __enableValidation()__ запускает процесс сборки элементов для запуска на них обработки валидации.
+ *  Формируется и обрабатывается массив форм требующих валидацию
+ *  @param {Object} parameters  - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
  */
 function enableValidation(parameters) {
   const formList = Array.from(document.querySelectorAll(parameters.formSelector));
@@ -91,6 +108,6 @@ function enableValidation(parameters) {
     setEventListeners(formElement, parameters);
   });
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 export {toggleButtonState, isValid, enableValidation}
