@@ -1,11 +1,11 @@
 import {isValid, toggleButtonState} from "./validate";
-import {Words} from "./index";
+import {classSelectorsForValid, formProfile} from "./utils";
 
 const profileUser = document.querySelector('.profile');
 const nameUser = profileUser.querySelector('.profile__name');
 const statusUser = profileUser.querySelector('.profile__status');
 
-const formProfile = document.forms["profile-form"];
+
 
 const nameInputFormProfile = formProfile.querySelector('[name="user-name"]');
 const statusInputFormProfile = formProfile.querySelector('[name="user-status"]');
@@ -18,6 +18,7 @@ const popupProfile = document.querySelector('.popup_type_profile');
 //*************************************************************************************************
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', keyHandler);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -25,9 +26,8 @@ function closePopup(popup) {
 //ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА КНОПКУ ESC
 //*************************************************************************************************
 function keyHandler(evt) {
-  const popupOpened = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    closePopup(popupOpened);
+    closePopup(document.querySelector('.popup_opened'));
   };
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,8 +36,11 @@ function keyHandler(evt) {
 //ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА НА ОВЕРЛЕЙ
 //*************************************************************************************************
 function clickHandler(evt) {
-  const popupOpened = document.querySelector('.popup_opened')
-  closePopup(popupOpened);
+  const evTarget = evt.target;
+  if (evTarget.classList.contains('popup__shadow') || evTarget.classList.contains('popup__button-close')) {
+    closePopup(evt.currentTarget);
+  }
+
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,8 +61,7 @@ function handleFormSubmitProfile(evt) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', keyHandler);
-  const overlay = popup.querySelector('.popup__shadow')
-  overlay.addEventListener('click', clickHandler);
+  popup.addEventListener('click', clickHandler);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,17 +70,17 @@ function openPopup(popup) {
 //*************************************************************************************************
 function openProfilePopup() {
   const rer = popupProfile.querySelector('.form');
-  const rerForm = rer.querySelector('.form__admin')
-  rerForm.reset();
   nameInputFormProfile.value = nameUser.textContent;
   statusInputFormProfile.value = statusUser.textContent;
   const inputList = Array.from(rer.querySelectorAll('.form__input'));
   const buttonElement = rer.querySelector('.form__button-submit');
-  isValid(rer, nameInputFormProfile, Words);
-  isValid(rer, statusInputFormProfile, Words);
-  toggleButtonState(inputList, buttonElement, Words);
+  isValid(rer, nameInputFormProfile, classSelectorsForValid);
+  isValid(rer, statusInputFormProfile, classSelectorsForValid);
+  toggleButtonState(inputList, buttonElement, classSelectorsForValid);
   openPopup(popupProfile);
 };
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-export {openPopup, closePopup, handleFormSubmitProfile, openProfilePopup, formProfile};
+
+export {openPopup, closePopup, handleFormSubmitProfile, openProfilePopup, formProfile,};

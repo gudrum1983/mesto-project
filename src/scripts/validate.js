@@ -21,7 +21,7 @@ function showInputError(formElement, inputElement, errorMessage, parameters) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //*************************************************************************************************
-//ФУНКЦИЯ КОНСТАНТА ПРОВЕРКИ НА ВАЛИДНОСТЬ
+//ФУНКЦИЯ ПРОВЕРКИ НА ВАЛИДНОСТЬ ОДНОГО ПОЛЯ ИНПУТ
 //*************************************************************************************************
 function isValid(formElement, inputElement, parameters) {
   if (inputElement.validity.patternMismatch) {
@@ -39,7 +39,7 @@ function isValid(formElement, inputElement, parameters) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //*************************************************************************************************
-//ФУНКЦИЯ КОНСТАНТА ПРОВЕРКИ НА ВАЛИДНОСТЬ ВСЕХ ПОЛЕЙ ФОРМЫ
+//ФУНКЦИЯ ПРОВЕРКИ НА ВАЛИДНОСТЬ ВСЕХ ПОЛЕЙ ФОРМЫ
 //*************************************************************************************************
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
@@ -53,7 +53,7 @@ function hasInvalidInput(inputList) {
 //*************************************************************************************************
 function toggleButtonState(inputList, buttonElement, parameters) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', true); //было в значении 'бла-бла'
+    buttonElement.setAttribute('disabled', true);
     buttonElement.classList.add(parameters.inactiveButtonClass);
   } else {
     buttonElement.disabled = false;
@@ -75,11 +75,16 @@ function setEventListeners(formElement, parameters) {
     });
   });
 };
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//*************************************************************************************************
-//ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ АКТИВНОСТИ КНОПКИ САБМИТ
-//*************************************************************************************************
+
+/**
+ * ФУНКЦИЯ валидации полей форм
+ *
+ *  @param {Object} classSelectorsForValid - объект с перечислением селекторов классов
+ *  для подставновки и поиска
+ */
 function enableValidation(parameters) {
   const formList = Array.from(document.querySelectorAll(parameters.formSelector));
   formList.forEach((formElement) => {
