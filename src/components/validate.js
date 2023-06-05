@@ -88,6 +88,7 @@ function toggleButtonState(inputList, buttonElement, parameters) {
 function setEventListeners(formElement, parameters) {
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
   const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, parameters);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement, parameters);
@@ -110,4 +111,20 @@ function enableValidation(parameters) {
 };
 
 
-export {toggleButtonState, isValid, enableValidation}
+/**
+ * Функция __clearErrorsPopup()__ очищает форму от ошибок и восстанавивает
+ * стиль кнопки сабмит по умолчанию
+ * @param {Element} formElement - форма
+ * @param {Object} parameters - parameters – объект с перечислением селекторов классов для подставновки
+ * классов и поиска элементов по классам
+ */
+function clearErrorsForm(formElement, parameters) {
+  const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
+  const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
+  inputList.forEach((inputElement) => {
+    isValid(formElement, inputElement, parameters);
+    toggleButtonState(inputList, buttonElement, parameters);
+  });
+};
+
+export {toggleButtonState, isValid, enableValidation, clearErrorsForm}

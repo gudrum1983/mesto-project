@@ -18,9 +18,14 @@ const titlePopupZoom = popupZoom.querySelector('.zoom__caption');
 function getCard(srcValue, titleValue) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__photo');
+  const cardLike = cardElement.querySelector('.card__like');
+  const cardTrash = cardElement.querySelector('.card__trash');
   cardImage.src = srcValue;
   cardImage.alt = `Визуальное отображение места - ${titleValue}`;
   cardElement.querySelector('.card__title').textContent = titleValue;
+  cardImage.addEventListener('click', () => openZoom(srcValue, titleValue));
+  cardLike.addEventListener('click', () => toggleLike(cardLike));
+  cardTrash.addEventListener('click', () => deleteCard(cardTrash));
   return cardElement
 }
 
@@ -42,9 +47,9 @@ function createCard(srcValue, titleValue) {
  * @param {String} titleValue - ссылка на изображение
  */
 function openZoom(srcValue, titleValue) {
-  imgPopupZoom.setAttribute('alt', titleValue);
+  imgPopupZoom.setAttribute('alt', `Визуальное отображение места - ${titleValue}`);
   imgPopupZoom.setAttribute('src', srcValue);
-  titlePopupZoom.textContent = titleValue.slice('Визуальное отображение места - '.length - 1);
+  titlePopupZoom.textContent = titleValue;
   openPopup(popupZoom)
 };
 
