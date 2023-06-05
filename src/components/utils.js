@@ -36,7 +36,7 @@ const initialCard = [
   }
 ];
 
-const classSelectorsForValid = {
+const selectorsForValid = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__button-submit',
@@ -52,4 +52,4 @@ const formPlace = document.forms["card-form"];
 
 //ЭКСПОРТ
 
-export {initialCard, classSelectorsForValid, cardContainer, formProfile, popupPlace, formPlace};
+export {initialCard, selectorsForValid, cardContainer, formProfile, popupPlace, formPlace};

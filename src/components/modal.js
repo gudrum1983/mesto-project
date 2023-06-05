@@ -1,7 +1,7 @@
 //ИМПОРТЫ
 
 import {isValid, toggleButtonState} from "./validate";
-import {classSelectorsForValid, formProfile, popupPlace, formPlace} from "./utils";
+import {selectorsForValid, formProfile, popupPlace, formPlace} from "./utils";
 import {createCard} from "./сard";
 
 //КОНСТАНТЫ
@@ -23,6 +23,7 @@ const linkInputFormPlace = formPlace.querySelector('[name="link-img"]');
 function handleFormSubmitPlace(evt) {
   evt.preventDefault();
   createCard(linkInputFormPlace.value, titleInputFormPlace.value);
+  debugger;
   evt.target.reset()
   closePopup(popupPlace);
 };
@@ -81,21 +82,34 @@ function openPopup(popup) {
   popup.addEventListener('click', clickHandler);
 };
 
+
+/**
+ * Функция __clearErrorsPopup()__ очищает форму от ошибок и восстанавивает
+ * стиль кнопки сабмит по умолчанию
+ * @param {Element} formElement - форма
+ * @param {Object} parameters - parameters – объект с перечислением селекторов классов для подставновки
+ * классов и поиска элементов по классам
+ */
+function clearErrorsForm(formElement, parameters) {
+  const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
+  const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
+  inputList.forEach((inputElement) => {
+    isValid(formElement, inputElement, parameters);
+    toggleButtonState(inputList, buttonElement, parameters);
+  });
+};
+
+
 /**
  * Функция __openProfilePopup()__ запускает процедуру открытия попапа профайл
  * */
 function openProfilePopup() {
-  const rer = popupProfile.querySelector('.form');
   nameInputFormProfile.value = nameUser.textContent;
   statusInputFormProfile.value = statusUser.textContent;
-  const inputList = Array.from(rer.querySelectorAll('.form__input'));
-  const buttonElement = rer.querySelector('.form__button-submit');
-  isValid(rer, nameInputFormProfile, classSelectorsForValid);
-  isValid(rer, statusInputFormProfile, classSelectorsForValid);
-  toggleButtonState(inputList, buttonElement, classSelectorsForValid);
+  clearErrorsForm(formProfile, selectorsForValid);
   openPopup(popupProfile);
 };
 
 //ЕКСПОРТ
 
-export {openPopup, closePopup, handleFormSubmitProfile, openProfilePopup, formProfile, handleFormSubmitPlace};
+export {openPopup, closePopup, handleFormSubmitProfile, openProfilePopup, handleFormSubmitPlace};
