@@ -3,7 +3,7 @@
 import '/src/pages/index.css'; // импорт главного файла стилей
 import {selectorsForValid, formProfile, popupPlace, formPlace} from "./utils";
 import {openPopup, closePopup} from './modal.js';
-import {clearErrorsForm, enableValidation, toggleButtonState} from "./validate";
+import {clearErrorsForm, enableValidation} from "./validate";
 import {createCard} from "./сard";
 
 //КОНСТАНТЫ
