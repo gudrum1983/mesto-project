@@ -121,6 +121,7 @@ function enableValidation(parameters) {
 function clearErrorsForm(formElement, parameters) {
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
   const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, parameters);
   inputList.forEach((inputElement) => {
     isValid(formElement, inputElement, parameters);
     toggleButtonState(inputList, buttonElement, parameters);

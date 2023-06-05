@@ -3,7 +3,7 @@
 import '/src/pages/index.css'; // импорт главного файла стилей
 import {selectorsForValid, formProfile, popupPlace, formPlace} from "./utils";
 import {openPopup, closePopup} from './modal.js';
-import {clearErrorsForm, enableValidation} from "./validate";
+import {clearErrorsForm, enableValidation, toggleButtonState} from "./validate";
 import {createCard} from "./сard";
 
 //КОНСТАНТЫ
@@ -27,7 +27,10 @@ const linkInputFormPlace = formPlace.querySelector('[name="link-img"]');
 function handleFormSubmitPlace(evt) {
   evt.preventDefault();
   createCard(linkInputFormPlace.value, titleInputFormPlace.value);
-  evt.target.reset()
+  evt.target.reset();
+  const buttonSubmit = evt.submitter;
+  buttonSubmit.disabled = true;
+  buttonSubmit.classList.add(selectorsForValid.inactiveButtonClass);
   closePopup(popupPlace);
 };
 
