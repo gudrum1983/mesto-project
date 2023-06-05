@@ -1,8 +1,10 @@
 //ИМПОРТЫ
+
 import {initialCard, cardContainer, popupPlace} from "./utils";
 import {openPopup} from "./modal";
 
 //КОНСТАНТЫ
+
 const cardTemplate = document.querySelector('#itemTemplate').content;
 const popupZoom = document.querySelector('.popup_type_zoom');
 const imgPopupZoom = popupZoom.querySelector('.zoom__photo');
@@ -82,9 +84,11 @@ function handleCardClickGeneral(evt) {
 };
 
 //ЦИКЛ ОБРАБОТКИ НАЧАЛЬНЫХ КАРТОЧЕК МЕСТ
+
 initialCard.forEach(function (card) {
   createCard(card.link, card.name);
 });
 
 //ЭКСПОРТ
-export {popupPlace, handleCardClickGeneral};
+
+export {popupPlace, handleCardClickGeneral, createCard};

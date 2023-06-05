@@ -1,8 +1,11 @@
 //ИМПОРТЫ
+
 import {isValid, toggleButtonState} from "./validate";
 import {classSelectorsForValid, formProfile, popupPlace, formPlace} from "./utils";
+import {createCard} from "./сard";
 
 //КОНСТАНТЫ
+
 const profileUser = document.querySelector('.profile');
 const nameUser = profileUser.querySelector('.profile__name');
 const statusUser = profileUser.querySelector('.profile__status');
@@ -11,6 +14,7 @@ const statusInputFormProfile = formProfile.querySelector('[name="user-status"]')
 const popupProfile = document.querySelector('.popup_type_profile');
 const titleInputFormPlace = formPlace.querySelector('[name="title"]');
 const linkInputFormPlace = formPlace.querySelector('[name="link-img"]');
+
 /**
  * Функция __handleFormSubmitPlace()__ изменяет поведение кнопки сабмит
  * в попапе место
@@ -93,4 +97,5 @@ function openProfilePopup() {
 };
 
 //ЕКСПОРТ
+
 export {openPopup, closePopup, handleFormSubmitProfile, openProfilePopup, formProfile, handleFormSubmitPlace};
