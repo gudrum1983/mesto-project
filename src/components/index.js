@@ -1,13 +1,16 @@
-//ИМПОРТЫ
-
+/**
+ * ИМПОРТЫ
+ */
 import '/src/pages/index.css'; // импорт главного файла стилей
 import {selectorsForValid, formProfile, popupPlace, formPlace} from "./utils";
 import {openPopup, closePopup} from './modal.js';
-import {clearErrorsForm, enableValidation} from "./validate";
+import {clearErrorsForm, enableValidation, disableSubmitButton} from "./validate";
 import {createCard} from "./сard";
 
-//КОНСТАНТЫ
 
+/**
+ * КОНСТАНТЫ
+ */
 const openPopupProfileButton = document.querySelector('.profile__button-edit');
 const openPopupPlaceButton = document.querySelector('.profile__button-add');
 const profileUser = document.querySelector('.profile');
@@ -28,9 +31,8 @@ function handleFormSubmitPlace(evt) {
   evt.preventDefault();
   createCard(linkInputFormPlace.value, titleInputFormPlace.value);
   evt.target.reset();
-  const buttonSubmit = evt.submitter;
-  buttonSubmit.disabled = true;
-  buttonSubmit.classList.add(selectorsForValid.inactiveButtonClass);
+  /*const buttonSubmit = evt.submitter;*/
+  disableSubmitButton(evt.submitter, selectorsForValid)
   closePopup(popupPlace);
 };
 
@@ -56,13 +58,15 @@ function openProfilePopup() {
   openPopup(popupProfile);
 };
 
-//СЛУШАТЕЛИ
-
+/**
+ * СЛУШАТЕЛИ
+ * */
 openPopupProfileButton.addEventListener('click', openProfilePopup);
 openPopupPlaceButton.addEventListener('click', () => openPopup(popupPlace));
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 formPlace.addEventListener('submit', handleFormSubmitPlace);
 
-//ВЫЗОВ ФУНКЦИИ ДЛЯ ВАЛИДАЦИИ
-
+/**
+ * ВЫЗОВ ФУНКЦИИ ДЛЯ ВАЛИДАЦИИ
+ * */
 enableValidation(selectorsForValid);

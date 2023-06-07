@@ -1,7 +1,7 @@
 /**
- * Функция __hideInputError()__ показывает ошибку
- *  @param {Element} formElement - массив
- *  @param {Element} inputElement - кнопка сабмит
+ * Функция __hideInputError()__ скрывает ошибку
+ *  @param {Element} formElement - форма
+ *  @param {Element} inputElement - поле ввода
  *  @param {Object} parameters - объект с перечислением селекторов классов
  *  для подставновки классов и поиска элементов по классам
  */
@@ -13,9 +13,20 @@ function hideInputError(formElement, inputElement, parameters) {
 };
 
 /**
+ *  Функция __disableSubmitButton()__ отключает кнопку сабмит
+ *  @param {Element} buttonElement - кнопка сабмит
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
+function disableSubmitButton(buttonElement, parameters) {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(parameters.inactiveButtonClass);
+}
+
+/**
  * Функция __showInputError()__ показывает ошибку
- *  @param {Element} formElement - массив
- *  @param {Element} inputElement - кнопка сабмит
+ *  @param {Element} formElement - форма
+ *  @param {Element} inputElement - поле ввода
  *  @param {String} errorMessage - строка с текстом ошибки
  *  @param {Object} parameters - объект с перечислением селекторов классов
  *  для подставновки классов и поиска элементов по классам
@@ -30,8 +41,8 @@ function showInputError(formElement, inputElement, errorMessage, parameters) {
 /**
  * Функция __isValid()__ обрабатывает поля ввода и текстовые ошибки к ним в зависимости от значения
  * валидности полей. Показывает и скрывает элементы ошибок
- *  @param {Element} formElement - массив
- *  @param {Element} inputElement - кнопка сабмит
+ *  @param {Element} formElement - форма
+ *  @param {Element} inputElement - поле ввода
  *  @param {Object} parameters - объект с перечислением селекторов классов
  *  для подставновки классов и поиска элементов по классам
  */
@@ -52,7 +63,7 @@ function isValid(formElement, inputElement, parameters) {
 /**
  * Функция __hasInvalidInput()__ обрабатывает полученный массив полей на валидность
  * @return {boolean} - возвращает true если хоть одно поле невалидно
- * @param {Array} inputList - массив
+ * @param {Array} inputList - массив полей ввода
  */
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
@@ -61,17 +72,15 @@ function hasInvalidInput(inputList) {
 };
 
 /**
- * Функция __toggleButtonState()__ обрабатывает кнопку сабмит в зависимости от
- * значения валидности полей формы
- *  @param {Array} inputList - массив
+ * Функция __toggleButtonState()__ обрабатывает кнопку сабмит в зависимости от значения валидности полей формы
+ *  @param {Array} inputList - массив полей ввода
  *  @param {Element} buttonElement - кнопка сабмит
  *  @param {Object} parameters - объект с перечислением селекторов классов
  *  для подставновки классов и поиска элементов по классам
  */
 function toggleButtonState(inputList, buttonElement, parameters) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(parameters.inactiveButtonClass);
+    disableSubmitButton(buttonElement, parameters)
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(parameters.inactiveButtonClass);
@@ -98,7 +107,8 @@ function setEventListeners(formElement, parameters) {
 };
 
 /**
- *  Функция __enableValidation()__ запускает процесс сборки элементов для запуска на них обработки валидации.
+ *  Функция __enableValidation()__ запускает процесс сборки элементов для дальнейшей обработки
+ *  с проверкой на валидность.
  *  Формируется и обрабатывается массив форм требующих валидацию
  *  @param {Object} parameters  - объект с перечислением селекторов классов
  *  для подставновки классов и поиска элементов по классам
@@ -109,7 +119,6 @@ function enableValidation(parameters) {
     setEventListeners(formElement, parameters);
   });
 };
-
 
 /**
  * Функция __clearErrorsPopup()__ очищает форму от ошибок и восстанавивает
@@ -128,4 +137,7 @@ function clearErrorsForm(formElement, parameters) {
   });
 };
 
-export {toggleButtonState, isValid, enableValidation, clearErrorsForm}
+/**
+ * ЭКСПОРТ
+ * */
+export {toggleButtonState, isValid, enableValidation, clearErrorsForm, disableSubmitButton}

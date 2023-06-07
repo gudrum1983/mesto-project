@@ -40,6 +40,7 @@ function closePopup(popup) {
   popup.removeEventListener('click', clickHandler);
 };
 
-//ЕКСПОРТ
-
+/**
+ * ЭКСПОРТ
+ */
 export {openPopup, closePopup};

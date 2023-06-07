@@ -1,5 +1,6 @@
-//ИМПОРТЫ
-
+/**
+ * ИМПОРТЫ
+ * */
 import khabImage from '/src/images/хабаровск.jpg';
 import svobImage from '/src/images/свободный.jpg';
 import vladImage from '/src/images/владивосток.png';
@@ -7,8 +8,9 @@ import blagImage from '/src/images/благовещенск.jpg';
 import mosImage from '/src/images/москва.png';
 import kazImage from '/src/images/казань.jpg';
 
-//КОНСТАНТЫ
-
+/**
+ * КОНСТАНТЫ
+ * */
 const initialCard = [
   {
     name: 'Хабаровск',
@@ -35,7 +37,6 @@ const initialCard = [
     link: kazImage
   }
 ];
-
 const selectorsForValid = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -50,6 +51,7 @@ const popupPlace = document.querySelector('.popup_type_place');
 const formPlace = document.forms["card-form"];
 
 
-//ЭКСПОРТ
-
+/**
+ * ЭКСПОРТ
+ * */
 export {initialCard, selectorsForValid, cardContainer, formProfile, popupPlace, formPlace};

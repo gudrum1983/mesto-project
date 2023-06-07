@@ -1,10 +1,12 @@
-//ИМПОРТЫ
-
+/**
+ * ИМПОРТЫ
+ * */
 import {initialCard, cardContainer, popupPlace} from "./utils";
 import {openPopup} from "./modal";
 
-//КОНСТАНТЫ
-
+/**
+ * КОНСТАНТЫ
+ * */
 const cardTemplate = document.querySelector('#itemTemplate').content;
 const popupZoom = document.querySelector('.popup_type_zoom');
 const imgPopupZoom = popupZoom.querySelector('.zoom__photo');
@@ -72,28 +74,13 @@ function toggleLike(like) {
 };
 
 /**
- * Функция-диспетчер __handleCardClickGeneral()__ события нажатия на карточку.
- * Определяет обработку события в зависимости от класса target:
- * card\_\_like, card\_\_trash или card\_\_photo
- * @param {Event} evt - событие нажатия клика на карточку
- */
-function handleCardClickGeneral(evt) {
-  const evTarget = evt.target;
-  if (evTarget.classList.contains('card__like')) {
-    toggleLike(evTarget);
-  } else if (evTarget.classList.contains('card__trash')) {
-    deleteCard(evTarget);
-  } else if (evTarget.classList.contains('card__photo')) {
-    openZoom(evTarget.src, evTarget.alt);
-  }
-};
-
-//ЦИКЛ ОБРАБОТКИ НАЧАЛЬНЫХ КАРТОЧЕК МЕСТ
-
+ * ЦИКЛ ОБРАБОТКИ НАЧАЛЬНЫХ КАРТОЧЕК МЕСТ
+ * */
 initialCard.forEach(function (card) {
   createCard(card.link, card.name);
 });
 
-//ЭКСПОРТ
-
-export {popupPlace, handleCardClickGeneral, createCard};
+/**
+ * ЭКСПОРТ
+ * */
+export {popupPlace, createCard};
