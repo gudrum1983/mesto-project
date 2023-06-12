@@ -15,8 +15,8 @@ import {
 } from "./utils";
 import {openPopup, closePopup, closePopupUX} from './modal.js';
 import {checkErrorsForm, enableValidation,} from "./validate";
-import {sendProfile, sendNewCard, startDeleteCard, sendAvatar, getTotalInfo, result} from "./api";
-import {buildCards, deleteCard} from "./сard";
+import {sendProfile, sendNewCard, sendCardDeletion, sendAvatar, getTotalInfo, result} from "./api";
+import {buildCards, removeCard} from "./сard";
 
 /**
  * КОНСТАНТЫ
@@ -39,6 +39,7 @@ const linkInputFormAvatar = formAvatar.querySelector('[name="link-avatar"]');
  */
 function updateAvatar(linkAvatar, buttonSubmit) {
   sendAvatar(linkAvatar, buttonSubmit)
+    .then(result)
     .then(data => {
       fillAvatar(data.avatar);
     })
@@ -132,16 +133,14 @@ function handleFormSubmitProfile(evt) {
 };
 
 /**
- * Функция __removeCard()__ отправляет данные о юзере и обновляет данные на страничке
+ * Функция __deleteCard()__ отправляет данные о юзере и обновляет данные на страничке
  * @param {string} cardID - идентификатор пользователя
  */
-function removeCard(cardID) {
-  startDeleteCard(cardID)
+function deleteCard(cardID) {
+  sendCardDeletion(cardID)
     .then(res => {
-      debugger
-      console.log(res)
       if (res.ok) {
-        return deleteCard();
+        return removeCard();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
@@ -160,10 +159,9 @@ function handleFormSubmitDelete(evt) {
   evt.submitter.disabled = false;
   const popup = evt.target.closest('.popup');
   const cardID = evt.submitter.value;
-  removeCard(cardID);
+  deleteCard(cardID);
   closePopup(popup)
 };
-
 
 /**
  * Функция __openProfilePopup()__ запускает процедуру открытия модального окна профайл
@@ -184,11 +182,21 @@ function openPlacePopup() {
 }
 
 /**
+ * Функция __openAvatarPopup()__ запускает процедуру открытия модального окна изменения аватарки
+ * */
+function openAvatarPopup() {
+  checkErrorsForm(formAvatar, selectorsForValid)
+  openPopup(popupAvatar)
+}
+
+
+
+/**
  * СЛУШАТЕЛИ
  * */
 openPopupProfileButton.addEventListener('click', openProfilePopup);
 openPopupPlaceButton.addEventListener('click', openPlacePopup);
-openPopupAvatarButton.addEventListener('click', () => openPopup(popupAvatar))
+openPopupAvatarButton.addEventListener('click', openAvatarPopup)
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 formPlace.addEventListener('submit', handleFormSubmitPlace);
 formDelete.addEventListener('submit', handleFormSubmitDelete);
@@ -205,8 +213,6 @@ enableValidation(selectorsForValid);
 function buildPage() {
   getTotalInfo()
     .then(([userData, cardsData]) => {
-      console.log(userData)
-      console.log(cardsData)
       userID = userData._id
       fillEntireProfile(userData);
       buildCards(cardsData.reverse(), userID);

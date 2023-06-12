@@ -1,6 +1,3 @@
-import {deleteCard, buildCards} from "./сard";
-import {closePopupUX} from "./modal";
-
 import {userID} from "./index";
 
 const config = {
@@ -14,7 +11,6 @@ const config = {
 const result = (response) => {
   return response.ok ? response.json() : promise.reject(response);
 }
-
 
 /**
  * Константа-шаблон __getStart()__ функции подключения к серверу через fetch для получения данных
@@ -57,7 +53,7 @@ const sendProfile = (newNameUser, newAboutUser) => {
  * @param {string} newAvatar - новая ссылка на картинку пользователя
  */
 const sendAvatar = (newAvatar) => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-25/users/me/avatar', {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
@@ -87,7 +83,7 @@ const sendNewCard = (linkNewCard, nameNewCard) => {
  * и удаления данных карточки из массива карточек
  * @param {string} cardId - идентификатор пользователя
  */
-const startDeleteCard = (cardId) => {
+const sendCardDeletion = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers
@@ -98,33 +94,13 @@ const startDeleteCard = (cardId) => {
  * Константа-шаблон __sendStatusLike()__ функции подключения к серверу через fetch
  * и удаления или добавления данных в массив лайков карточки
  * @param {string} cardId - идентификатор карточки
- * @param {element} like - элемент лайка
- * @param {element} numberLike - элемент числа лайков
- * @param {string} method - метод 'PUT' или 'DELETE'
+ * @param {boolean} activeLike - флаг активности лайк
  */
-const sendStatusLike = (cardId, like, numberLike, method) => {
+const sendStatusLike = (cardId,activeLike) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-    method: method, //'DELETE','PUT'
+    method: activeLike ? 'DELETE' : 'PUT',
     headers: config.headers,
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .then(data => {
-      const dataLike = data.likes;
-      numberLike.textContent = (dataLike.length);
-      if (method === 'PUT') {
-        like.classList.add('card__like_active')
-      } else {
-        like.classList.remove('card__like_active')
-      }
-    })
-    .catch((err) => {
-      showError(err);
-    })
 }
 
-export {sendProfile, sendNewCard, startDeleteCard, sendStatusLike, sendAvatar, userID, getTotalInfo, result}
+export {sendProfile, sendNewCard, sendCardDeletion, sendStatusLike, sendAvatar, userID, getTotalInfo, result}

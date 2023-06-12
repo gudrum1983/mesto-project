@@ -131,10 +131,9 @@ function enableValidation(parameters) {
  */
 function checkErrorsForm(formElement, parameters) {
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
-  debugger
   const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
   const hasValueInput = inputList.every(input => {
-    return (input.value !== '')
+    return (input.value.length !== 0)
   })
   if (hasValueInput)  {
     toggleButtonState(inputList, buttonElement, parameters);
@@ -144,9 +143,11 @@ function checkErrorsForm(formElement, parameters) {
     });
   } else {
     disableSubmitButton(buttonElement, parameters)
+    inputList.forEach((inputElement) => {
+      hideInputError(formElement, inputElement, parameters);
+    })
+
   }
-
-
 };
 
 
