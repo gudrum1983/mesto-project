@@ -1,5 +1,4 @@
-.form__admin {
-  padding-top: 17px;
+.card__box-like {
   display: flex;
   flex-direction: column;
 }

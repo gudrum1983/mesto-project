@@ -1,6 +1,8 @@
 .card__caption {
+  height: 79px;
   border-radius: 0 0 10px 10px;
-  padding: 25px 21px;
+  /*padding: 22 21px; убрала внутренние отступы сверху и снизу так как поле не должно растягиваться даже при переполнении*/
+  padding: 0 21px;
   background-color: #ffffff;
   max-width: 100%;
   display: flex;

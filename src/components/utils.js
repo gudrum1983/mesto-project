@@ -1,42 +1,6 @@
 /**
- * ИМПОРТЫ
- * */
-import khabImage from '/src/images/хабаровск.jpg';
-import svobImage from '/src/images/свободный.jpg';
-import vladImage from '/src/images/владивосток.png';
-import blagImage from '/src/images/благовещенск.jpg';
-import mosImage from '/src/images/москва.png';
-import kazImage from '/src/images/казань.jpg';
-
-/**
  * КОНСТАНТЫ
  * */
-const initialCard = [
-  {
-    name: 'Хабаровск',
-    link: khabImage
-  },
-  {
-    name: 'Свободный',
-    link: svobImage
-  },
-  {
-    name: 'Владивосток',
-    link: vladImage
-  },
-  {
-    name: 'Благовещенск',
-    link: blagImage
-  },
-  {
-    name: 'Москва',
-    link: mosImage
-  },
-  {
-    name: 'Казань',
-    link: kazImage
-  }
-];
 const selectorsForValid = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -49,9 +13,69 @@ const formProfile = document.forms["profile-form"];
 const cardContainer = document.querySelector('.card-grid');
 const popupPlace = document.querySelector('.popup_type_place');
 const formPlace = document.forms["card-form"];
+const formDelete = document.forms["delete-form"];
+const formAvatar = document.forms["avatar-form"];
+const popupAvatar = document.querySelector('.popup_type_avatar');
+const avatar = document.querySelector('.profile__avatar');
+const nameUser = document.querySelector('.profile__name');
+const statusUser = document.querySelector('.profile__status');
+/**
+ * Функция __fillProfile()__ добавляет карточку в контейнер
+ *  @param {string} name - имя юзера
+ *  @param {string} about - значение информации о юзере
+ */
+function fillProfile(name, about) {
+  nameUser.textContent = name;
+  statusUser.textContent = about;
+}
 
+/**
+ * Функция __fillAvatar()__ запускает заполнение профиля
+ *  @param {string} linkAvatar - ссылка на аватар
+ */
+function fillAvatar(linkAvatar) {
+  avatar.src = linkAvatar;
+}
+
+/**
+ * Функция __fillEntireProfile()__ запускает заполнение профиля
+ *  @param {object} objectProfile - объект профиль юзера
+ */
+function fillEntireProfile(objectProfile) {
+  fillProfile(objectProfile.name, objectProfile.about);
+  fillAvatar(objectProfile.avatar);
+}
+
+
+const textError = `Упс...что-то пошло не так! Попейте вкусного чая, а потом попробуйте снова!
+С любовью, Екатерина и команда Яндекс практикум!`
+const showError = (err) => {
+  alert(textError)
+  console.log(`Запрос не выполнен. ${err}.`)
+};
+
+let userID = '';
 
 /**
  * ЭКСПОРТ
  * */
-export {initialCard, selectorsForValid, cardContainer, formProfile, popupPlace, formPlace};
+export {
+  selectorsForValid,
+  cardContainer,
+  formProfile,
+  popupPlace,
+  formPlace,
+  formDelete,
+  formAvatar,
+  popupAvatar,
+  nameUser,
+  statusUser,
+  fillProfile,
+  fillAvatar,
+  fillEntireProfile,
+  showError,
+  userID
+};
+
+
+

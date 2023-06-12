@@ -1,3 +1,16 @@
+import {selectorsForValid} from "./utils";
+
+/**
+ *  Функция __disableSubmitButton()__ отключает кнопку сабмит
+ *  @param {Element} buttonElement - кнопка сабмит
+ *  @param {Object} parameters - объект с перечислением селекторов классов
+ *  для подставновки классов и поиска элементов по классам
+ */
+function disableSubmitButton(buttonElement, parameters) {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(parameters.inactiveButtonClass);
+}
+
 /**
  * Функция __hideInputError()__ скрывает ошибку
  *  @param {Element} formElement - форма
@@ -11,17 +24,6 @@ function hideInputError(formElement, inputElement, parameters) {
   errorElement.classList.remove(parameters.errorClass);
   errorElement.textContent = '';
 };
-
-/**
- *  Функция __disableSubmitButton()__ отключает кнопку сабмит
- *  @param {Element} buttonElement - кнопка сабмит
- *  @param {Object} parameters - объект с перечислением селекторов классов
- *  для подставновки классов и поиска элементов по классам
- */
-function disableSubmitButton(buttonElement, parameters) {
-  buttonElement.disabled = true;
-  buttonElement.classList.add(parameters.inactiveButtonClass);
-}
 
 /**
  * Функция __showInputError()__ показывает ошибку
@@ -121,23 +123,34 @@ function enableValidation(parameters) {
 };
 
 /**
- * Функция __clearErrorsPopup()__ очищает форму от ошибок и восстанавивает
+ * Функция __сheckErrorsForm()__ очищает форму от ошибок и восстанавивает
  * стиль кнопки сабмит по умолчанию
  * @param {Element} formElement - форма
  * @param {Object} parameters - parameters – объект с перечислением селекторов классов для подставновки
  * классов и поиска элементов по классам
  */
-function clearErrorsForm(formElement, parameters) {
+function checkErrorsForm(formElement, parameters) {
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
+  debugger
   const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, parameters);
-  inputList.forEach((inputElement) => {
-    isValid(formElement, inputElement, parameters);
+  const hasValueInput = inputList.every(input => {
+    return (input.value !== '')
+  })
+  if (hasValueInput)  {
     toggleButtonState(inputList, buttonElement, parameters);
-  });
+    inputList.forEach((inputElement) => {
+      isValid(formElement, inputElement, parameters);
+      toggleButtonState(inputList, buttonElement, parameters);
+    });
+  } else {
+    disableSubmitButton(buttonElement, parameters)
+  }
+
+
 };
+
 
 /**
  * ЭКСПОРТ
  * */
-export {toggleButtonState, isValid, enableValidation, clearErrorsForm, disableSubmitButton}
+export {toggleButtonState, isValid, enableValidation, checkErrorsForm, disableSubmitButton}

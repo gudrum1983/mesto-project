@@ -1,3 +1,15 @@
+import {checkErrorsForm} from "./validate";
+
+/**
+ * Функция __closePopup()__ закрывает попап
+ * @param {Element} popup - попап
+ */
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', keyHandler);
+  popup.removeEventListener('click', clickHandler);
+
+};
 /**
  * Функция __clickHandler()__ запускает закрытие попапа по клику на оверлей
  * @param {Event} evt - событие
@@ -31,16 +43,19 @@ function openPopup(popup) {
 };
 
 /**
- * Функция __closePopup()__ закрывает попап
- * @param {Element} popup - попап
+ * Функция __closedPopupUX()__ закрывает попап и возвращает значения кнопке сабмит
+ * @param {Element} button - кнопка сабмита
  */
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', keyHandler);
-  popup.removeEventListener('click', clickHandler);
-};
+function closePopupUX(button) {
+  button.textContent = 'Сохранить';
+  const popup = button.closest('.popup');
+  const form = popup.querySelector('.form__admin');
+  form.reset();
+  button.disabled = false
+  closePopup(popup);
+}
 
 /**
  * ЭКСПОРТ
  */
-export {openPopup, closePopup};
+export {openPopup, closePopup, closePopupUX, keyHandler, clickHandler};

@@ -7,7 +7,7 @@
 
 @import url('../blocks/button/button.css');
 @import url('../blocks/button/_type/button_type_dark.css');
-
+@import url('../blocks/button/_type/button_type_hidden.css');
 
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
@@ -33,9 +33,10 @@
 @import url('../blocks/card/__caption/card__caption.css');
 @import url('../blocks/card/__title/card__title.css');
 @import url('../blocks/card/__trash/card__trash.css');
-
+@import url('../blocks/card/__box-like/card__box-like.css');
 @import url('../blocks/card/__like/card__like.css');
 @import url('../blocks/card/__like/_active/card__like_active.css');
+@import url('../blocks/card/__like-number/card__like-number.css');
 
 /*подключение стилей блоков*/
 @import url('../blocks/header/header.css');
@@ -46,11 +47,14 @@
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__user-info/profile__user-info.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__avatar-box/profile__avatar-box.css');
+@import url('../blocks/profile/__avatar-button/profile__avatar-button.css');
 @import url('../blocks/profile/__names-block/profile__names-block.css');
 @import url('../blocks/profile/__name/profile__name.css');
 @import url('../blocks/profile/__button-edit/profile__button-edit.css');
 @import url('../blocks/profile/__status/profile__status.css');
 @import url('../blocks/profile/__button-add/profile__button-add.css');
+
 
 @import url('../blocks/card-grid/card-grid.css');
 

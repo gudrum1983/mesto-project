@@ -47,6 +47,39 @@
   </div>
 </div>
 
+<div class="popup popup_type_delete">
+  <div class="popup__shadow"></div>
+  <div class="popup__container">
+    <button class="popup__button-close button" type="button"></button>
+    <div class="form form-delete">
+      <h3 class="form__header">Вы уверены?</h3>
+      <form class="form__admin" name="delete-form" id="form-delete" novalidate>
+        <button class="form__button-submit button button_type_dark" type="submit">Да</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="popup popup_type_avatar">
+  <div class="popup__shadow"></div>
+  <div class="popup__container">
+    <button class="popup__button-close button" type="button"></button>
+    <div class="form form-avatar">
+      <h3 class="form__header">Обновить аватар</h3>
+      <form class="form__admin" name="avatar-form" id="form-avatar" novalidate>
+        <div class="form__input-place">
+          <label class="form__field">
+            <input class="form__input" type="url" name="link-avatar" id="link-avatar"
+                   placeholder="Ссылка на картинку" required>
+            <span class="form__error link-avatar-error"></span>
+          </label>
+        </div>
+        <button class="form__button-submit button button_type_dark" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="popup popup_type_place">
   <div class="popup__shadow"></div>
   <div class="popup__container">
@@ -88,6 +121,7 @@
   </div>
 </div>
 
+
 <header class="header">
 
   <img src="<%=require('./images/logo-min.svg')%>"
@@ -101,14 +135,16 @@
 
   <section class="profile">
 
-    <img src="<%=require('./images/domovenok.png')%>" alt="Аватарка пользователя" class="profile__avatar">
-
-    <div class="profile__names-block">
-      <h1 class="profile__name">Домовой Кузя</h1>
-      <button class="profile__button-edit button button_open" type="button" form="form-profile"></button>
+    <div class="profile__avatar-box">
+      <img src="" alt="Аватарка пользователя" class="profile__avatar">
+      <button class="profile__avatar-button button button_type_dark" type="button" form="form-avatar"></button>
     </div>
-    <p class="profile__status">Исследователь холодильников</p>
-    <button class="profile__button-add button button_open" type="button" form="form-place"></button>
+    <div class="profile__names-block">
+      <h1 class="profile__name"></h1>
+      <button class="profile__button-edit button" type="button" form="form-profile"></button>
+    </div>
+    <p class="profile__status"></p>
+    <button class="profile__button-add button" type="button" form="form-place"></button>
 
   </section>
 
@@ -119,9 +155,12 @@
         <img class="card__photo" src="#" alt="">
         <div class="card__caption">
           <h2 class="card__title"></h2>
-          <button class="card__like button" type="button"></button>
+          <div class="card__box-like">
+            <button class="card__like button" type="button"></button>
+            <p class="card__like-number"></p>
+          </div>
         </div>
-        <button class="card__trash button" type="button"></button>
+        <button class="card__trash button button_type_hidden" type="button"></button>
       </div>
     </template>
 
