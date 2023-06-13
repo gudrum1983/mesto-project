@@ -19,6 +19,7 @@ const popupAvatar = document.querySelector('.popup_type_avatar');
 const avatar = document.querySelector('.profile__avatar');
 const nameUser = document.querySelector('.profile__name');
 const statusUser = document.querySelector('.profile__status');
+
 /**
  * Функция __fillProfile()__ добавляет карточку в контейнер
  *  @param {string} name - имя юзера
@@ -46,15 +47,25 @@ function fillEntireProfile(objectProfile) {
   fillAvatar(objectProfile.avatar);
 }
 
+/**
+ * Константа-шаблон __result()__ функции получения, проверки и преобразования ответа
+ * @param {Object} response - ответ от запроса fetch
+ */
+const result = (response) => {
+  /*if (response.ok) {
+    return response.json()
+  } else {
+    return promise.reject('Ошибка подключения к серверу')
+  }*/
+  return response.ok ? response.json() : promise.reject('Ошибка подключения к серверу');
+}
 
-const textError = `Упс...что-то пошло не так! Попейте вкусного чая, а потом попробуйте снова!
-С любовью, Екатерина и команда Яндекс практикум!`
+const textError = 'Упс...что-то пошло не так! Попейте вкусного чая, а потом попробуйте снова!\nС любовью, Екатерина и команда Яндекс практикум!'
 const showError = (err) => {
-  alert(textError)
-  console.log(`Запрос не выполнен. ${err}.`)
+  alert(textError);
+  console.log(`Запрос не выполнен. ${err}.`);
 };
 
-let userID = '';
 
 /**
  * ЭКСПОРТ
@@ -74,7 +85,7 @@ export {
   fillAvatar,
   fillEntireProfile,
   showError,
-  userID
+  result
 };
 
 

@@ -51,7 +51,7 @@ function closePopupUX(button) {
   const popup = button.closest('.popup');
   const form = popup.querySelector('.form__admin');
   form.reset();
-  button.disabled = false
+  button.disabled = false;
   closePopup(popup);
 }
 

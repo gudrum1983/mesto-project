@@ -1,23 +1,24 @@
-import {userID} from "./index";
+import {result} from "./utils";
+
 
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-25',
+  endpointUser: '/users/me',
+  endpointAvatar: '/users/me/avatar',
+  endpointCards: '/cards',
+  endpointLikes: '/cards/likes',
   headers: {
     authorization: '18a46d0a-0ce8-4b72-9f50-a83304389d2f',
     'Content-Type': 'application/json'
   }
 }
 
-const result = (response) => {
-  return response.ok ? response.json() : promise.reject(response);
-}
-
 /**
  * Константа-шаблон __getStart()__ функции подключения к серверу через fetch для получения данных
- * @param {string} endTextLink - хвостовая часть Url
+ * @param {string} endpoint - хвостовая часть Url
  */
-const getInfo = (endTextLink) => {
-  return fetch(`${config.baseUrl}${endTextLink}`, {
+const getInfo = (endpoint) => {
+  return fetch(`${config.baseUrl}${endpoint}`, {
     headers: config.headers
   })
     .then(result)
@@ -27,7 +28,7 @@ const getInfo = (endTextLink) => {
  * Константа-шаблон __getTotalInfo()__ для получения всех данных по юзеру и карточкам
  */
 const getTotalInfo = () => {
-  return Promise.all([getInfo('/users/me'), getInfo('/cards')])
+  return Promise.all([getInfo(config.endpointUser), getInfo(config.endpointCards)])
 }
 
 /**
@@ -37,7 +38,7 @@ const getTotalInfo = () => {
  * @param {string} newAboutUser - новое значение информации о пользователе
  */
 const sendProfile = (newNameUser, newAboutUser) => {
-  return fetch(`${config.baseUrl}/users/me`, {
+  return fetch(`${config.baseUrl}${config.endpointUser}`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
@@ -53,7 +54,7 @@ const sendProfile = (newNameUser, newAboutUser) => {
  * @param {string} newAvatar - новая ссылка на картинку пользователя
  */
 const sendAvatar = (newAvatar) => {
-  return fetch(`${config.baseUrl}/users/me/avatar`, {
+  return fetch(`${config.baseUrl}${config.endpointAvatar}`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
@@ -68,7 +69,7 @@ const sendAvatar = (newAvatar) => {
  * @param {string} nameNewCard - новое имя для картинки места
  */
 const sendNewCard = (linkNewCard, nameNewCard) => {
-  return fetch(`${config.baseUrl}/cards`, {
+  return fetch(`${config.baseUrl}${config.endpointCards}`, {
     method: 'POST',
     headers: config.headers,
     body: JSON.stringify({
@@ -84,7 +85,7 @@ const sendNewCard = (linkNewCard, nameNewCard) => {
  * @param {string} cardId - идентификатор пользователя
  */
 const sendCardDeletion = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+  return fetch(`${config.baseUrl}${config.endpointCards}/${cardId}`, {
     method: 'DELETE',
     headers: config.headers
   })
@@ -96,11 +97,11 @@ const sendCardDeletion = (cardId) => {
  * @param {string} cardId - идентификатор карточки
  * @param {boolean} activeLike - флаг активности лайк
  */
-const sendStatusLike = (cardId,activeLike) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+const sendStatusLike = (cardId, activeLike) => {
+  return fetch(`${config.baseUrl}${config.endpointLikes}/${cardId}`, {
     method: activeLike ? 'DELETE' : 'PUT',
     headers: config.headers,
   })
 }
 
-export {sendProfile, sendNewCard, sendCardDeletion, sendStatusLike, sendAvatar, userID, getTotalInfo, result}
+export {sendProfile, sendNewCard, sendCardDeletion, sendStatusLike, sendAvatar, getTotalInfo}

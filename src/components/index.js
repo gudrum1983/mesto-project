@@ -11,11 +11,12 @@ import {
   formAvatar,
   popupAvatar,
   nameUser,
-  statusUser, fillEntireProfile, showError, fillProfile, fillAvatar
+  statusUser,
+  fillEntireProfile, showError, fillProfile, fillAvatar, result
 } from "./utils";
 import {openPopup, closePopup, closePopupUX} from './modal.js';
 import {checkErrorsForm, enableValidation,} from "./validate";
-import {sendProfile, sendNewCard, sendCardDeletion, sendAvatar, getTotalInfo, result} from "./api";
+import {sendProfile, sendNewCard, sendCardDeletion, sendAvatar, getTotalInfo} from "./api";
 import {buildCards, removeCard} from "./сard";
 
 /**
@@ -31,6 +32,8 @@ const popupProfile = document.querySelector('.popup_type_profile');
 const titleInputFormPlace = formPlace.querySelector('[name="title"]');
 const linkInputFormPlace = formPlace.querySelector('[name="link-img"]');
 const linkInputFormAvatar = formAvatar.querySelector('[name="link-avatar"]');
+
+
 
 /**
  * Функция __updateAvatar()__ отправляет данные о юзере и обновляет данные на страничке
@@ -58,9 +61,9 @@ function updateAvatar(linkAvatar, buttonSubmit) {
  */
 function handleFormSubmitAvatar(evt) {
   evt.preventDefault();
-  evt.submitter.textContent = 'Сохранение...'
+  evt.submitter.textContent = 'Сохранение...';
   evt.submitter.disabled = true;
-  updateAvatar(linkInputFormAvatar.value, evt.submitter)
+  updateAvatar(linkInputFormAvatar.value, evt.submitter);
 };
 
 /**
@@ -90,7 +93,7 @@ function addCard(linkImgCard, titleCard, buttonSubmit) {
  */
 function handleFormSubmitPlace(evt) {
   evt.preventDefault();
-  evt.submitter.textContent = 'Сохранение...'
+  evt.submitter.textContent = 'Сохранение...';
   evt.submitter.disabled = true;
   addCard(linkInputFormPlace.value, titleInputFormPlace.value, evt.submitter);
 };
@@ -105,7 +108,7 @@ function updateProfile(nameUser, aboutUser, buttonSubmit) {
   sendProfile(nameUser, aboutUser)
     .then(result)
     .then(user => {
-      fillProfile(user.name, user.about)
+      fillProfile(user.name, user.about);
     })
     .catch((err) => {
       showError(err);
@@ -160,7 +163,7 @@ function handleFormSubmitDelete(evt) {
   const popup = evt.target.closest('.popup');
   const cardID = evt.submitter.value;
   deleteCard(cardID);
-  closePopup(popup)
+  closePopup(popup);
 };
 
 /**
@@ -177,19 +180,32 @@ function openProfilePopup() {
  * Функция __openPlacePopup()__ запускает процедуру открытия модального окна добавления карточки
  * */
 function openPlacePopup() {
-  checkErrorsForm(formPlace, selectorsForValid)
-  openPopup(popupPlace)
+  checkErrorsForm(formPlace, selectorsForValid);
+  openPopup(popupPlace);
 }
 
 /**
  * Функция __openAvatarPopup()__ запускает процедуру открытия модального окна изменения аватарки
  * */
 function openAvatarPopup() {
-  checkErrorsForm(formAvatar, selectorsForValid)
-  openPopup(popupAvatar)
+  checkErrorsForm(formAvatar, selectorsForValid);
+  openPopup(popupAvatar);
 }
 
-
+/**
+ * Функция __buildPage()__ строит страничку
+ */
+function buildPage() {
+  getTotalInfo()
+    .then(([userData, cardsData]) => {
+      userID = userData._id;
+      fillEntireProfile(userData);
+      buildCards(cardsData.reverse(), userID);
+    })
+    .catch((err) => {
+      showError(err);
+    })
+}
 
 /**
  * СЛУШАТЕЛИ
@@ -203,26 +219,9 @@ formDelete.addEventListener('submit', handleFormSubmitDelete);
 formAvatar.addEventListener('submit', handleFormSubmitAvatar);
 
 /**
- * ВЫЗОВ ФУНКЦИИ ДЛЯ ВАЛИДАЦИИ
+ * ВЫЗОВЫ ФУНКЦИИ ДЛЯ ВАЛИДАЦИИ И ОТРИСОВКИ СТРАНИЧКИ
  * */
 enableValidation(selectorsForValid);
-
-/**
- * Функция __buildPage()__ строит страничку
- */
-function buildPage() {
-  getTotalInfo()
-    .then(([userData, cardsData]) => {
-      userID = userData._id
-      fillEntireProfile(userData);
-      buildCards(cardsData.reverse(), userID);
-    })
-    .catch((err) => {
-      showError(err);
-    })
-}
-
-
 buildPage();
 
 export {userID}

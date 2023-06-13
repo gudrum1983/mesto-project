@@ -132,10 +132,10 @@ function enableValidation(parameters) {
 function checkErrorsForm(formElement, parameters) {
   const inputList = Array.from(formElement.querySelectorAll(parameters.inputSelector));
   const buttonElement = formElement.querySelector(parameters.submitButtonSelector);
-  const hasValueInput = inputList.every(input => {
-    return (input.value.length !== 0)
+  const noValueInputs = inputList.every(input => {
+    return (input.value.length === 0)
   })
-  if (hasValueInput)  {
+  if (!noValueInputs)  {
     toggleButtonState(inputList, buttonElement, parameters);
     inputList.forEach((inputElement) => {
       isValid(formElement, inputElement, parameters);

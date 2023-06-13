@@ -1,9 +1,9 @@
 /**
  * ИМПОРТЫ
  * */
-import {cardContainer, popupPlace, showError} from "./utils";
+import {cardContainer, popupPlace, showError, result} from "./utils";
 import {openPopup} from "./modal";
-import {sendStatusLike, result} from "./api";
+import {sendStatusLike} from "./api";
 
 
 /**
@@ -14,17 +14,17 @@ const popupZoom = document.querySelector('.popup_type_zoom');
 const imgPopupZoom = popupZoom.querySelector('.zoom__photo');
 const titlePopupZoom = popupZoom.querySelector('.zoom__caption');
 
-function handleCardTrash(cardElement, cardTrash, cardUserID, userID, cardId) {
-
-}
-
-
+/**
+ * Функция __checkMyLike()__ проверяет есть ли в массиве лайков лайк юзера с ID
+ * @param {array} likesArray - массив лайков
+ * @param {string} ID - идентификатор пользователя
+ */
 function checkMyLike(likesArray, ID) {
   if (likesArray.length > 0) {
     const check = likesArray.map(function (item) {
-      return item._id
+      return item._id;
     })
-    return check.includes(ID)
+    return check.includes(ID);
   } else {
     return false;
   }
@@ -52,18 +52,17 @@ function getCard(cardName, cardLink, cardId, cardLikes, hasMyLike, myCard) {
   cardNumberLike.textContent = (cardLikes.length);
   cardLike.addEventListener('click', () => toggleLike(cardLike, cardNumberLike, cardId));
   if (hasMyLike) {
-    cardLike.classList.add('card__like_active')
+    cardLike.classList.add('card__like_active');
   }
   //определяем наша ли карточка и заполняем кнопку удаления
   const cardTrash = newCardElement.querySelector('.card__trash');
   if (myCard) {
     cardTrash.addEventListener('click', () => prepareDeleteCard(cardTrash, cardId));
-    //cardTrash.dataset.id = cardId;
   } else {
-    cardTrash.remove()
+    cardTrash.remove();
   }
   newCardElement.querySelector('.card__title').textContent = cardName;
-  return newCardElement
+  return newCardElement;
 }
 
 /**
@@ -75,7 +74,7 @@ function createCard(card, userId) {
   const hasMyLike = checkMyLike(card.likes, userId);
   const myCard = (card.owner._id === userId);
   const cardElement = getCard(card.name, card.link, card._id, card.likes, hasMyLike, myCard);
-  cardContainer.prepend(cardElement)
+  cardContainer.prepend(cardElement);
 };
 
 /**
@@ -89,18 +88,18 @@ function openZoom(srcValue, titleValue) {
   imgPopupZoom.setAttribute('alt', `Визуальное отображение места - ${titleValue}`);
   imgPopupZoom.setAttribute('src', srcValue);
   titlePopupZoom.textContent = titleValue;
-  openPopup(popupZoom)
+  openPopup(popupZoom);
 };
 
 function markCard(buttonTrash) {
   const findDelCards = document.querySelectorAll('.card-deleted');
   if (findDelCards.length >= 1) {
     findDelCards.forEach(item => {
-      item.classList.remove('card-deleted')
+      item.classList.remove('card-deleted');
     })
   }
-  const cardElement = buttonTrash.closest('.card')
-  cardElement.classList.add('card-deleted')
+  const cardElement = buttonTrash.closest('.card');
+  cardElement.classList.add('card-deleted');
 }
 
 /**
@@ -110,7 +109,7 @@ function markCard(buttonTrash) {
  *  @param {string} cardId - идентификатор карточки
  */
 function prepareDeleteCard(buttonTrash, cardId) {
-  markCard(buttonTrash)
+  markCard(buttonTrash);
   const popupDelete = document.querySelector('.popup_type_delete');
   const buttonSubmit = popupDelete.querySelector('.form__button-submit');
   buttonSubmit.value = cardId;
@@ -122,13 +121,8 @@ function prepareDeleteCard(buttonTrash, cardId) {
  */
 function removeCard() {
   const cardElement = document.querySelector('.card-deleted');
-  cardElement.remove()
+  cardElement.remove();
 }
-
-function fillLikeBoxElement(arrLikes, activeLike, numberElement, likeElement) {
-
-}
-
 
 /**
  * Функция __updateStatusLike()__ обновляет данные о лайке на сервере
@@ -143,9 +137,9 @@ function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
     .then(data => {
       numberLikeElement.textContent = (data.likes.length);
       if (activeLike) {
-        likeElement.classList.remove('card__like_active')
+        likeElement.classList.remove('card__like_active');
       } else {
-        likeElement.classList.add('card__like_active')
+        likeElement.classList.add('card__like_active');
       }
     })
     .catch((err) => {
