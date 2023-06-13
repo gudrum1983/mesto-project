@@ -92,14 +92,15 @@ function openZoom(srcValue, titleValue) {
 };
 
 function markCard(buttonTrash) {
-  const findDelCards = document.querySelectorAll('.card-deleted');
+  const findDelCards = document.querySelectorAll('[data-deleted = "true"]');
   if (findDelCards.length >= 1) {
     findDelCards.forEach(item => {
-      item.classList.remove('card-deleted');
+      delete item.dataset.deleted
+     // item.classList.remove('card-deleted');
     })
   }
   const cardElement = buttonTrash.closest('.card');
-  cardElement.classList.add('card-deleted');
+  cardElement.dataset.deleted = true;
 }
 
 /**
