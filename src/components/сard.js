@@ -96,7 +96,6 @@ function markCard(buttonTrash) {
   if (findDelCards.length >= 1) {
     findDelCards.forEach(item => {
       delete item.dataset.deleted
-     // item.classList.remove('card-deleted');
     })
   }
   const cardElement = buttonTrash.closest('.card');
