@@ -1,3 +1,7 @@
+/**
+ * Константа __config__ шаблоны настройки подключения через fetch.
+ * @type {object}
+ */
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-25',
   headers: {
@@ -6,6 +10,10 @@ const config = {
   }
 }
 
+/**
+ * Константа __endpoints__ шаблоны конечных точек url.
+ * @type {object}
+ */
 const endpoints = {
   user: '/users/me',
   avatar: '/users/me/avatar',
@@ -13,6 +21,10 @@ const endpoints = {
   likes: '/cards/likes',
 }
 
+/**
+ * Функция __checkResponse()__
+ * @param {response} response - ответ
+ */
 function checkResponse(response) {
   return response.ok ? response.json() : promise.reject('Ошибка подключения к серверу');
 }

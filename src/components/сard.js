@@ -5,8 +5,8 @@ import {showError} from "./utils";
 import {openPopup} from "./modal";
 import {sendStatusLike} from "./api";
 import {openDelete} from "./index";
-import {cardContainer, formAvatar, popupPlace} from "./constants"
-import {checkErrorsForm} from "./validate";
+import {cardContainer, popupPlace} from "./constants"
+
 
 
 /**
@@ -178,4 +178,4 @@ function buildCards(cards, userID) {
 /**
  * ЭКСПОРТ
  * */
-export {popupPlace, createCard, buildCards, checkMyLike, removeCard, popupDelete, buttonSubmitDelete};
+export {popupPlace, createCard, buildCards, removeCard, popupDelete, buttonSubmitDelete};
