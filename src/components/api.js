@@ -97,18 +97,10 @@ const sendNewCard = (linkNewCard, nameNewCard) => {
 }
 
 /**
-
- * Константа-шаблон __startDeleteCard()__ функции подключения к серверу через fetch
+ * Константа-шаблон __sendCardDeletion()__ функции подключения к серверу через fetch
  * и удаления данных карточки из массива карточек
  * @param {string} cardId - идентификатор пользователя
  */
-/*const sendCardDeletion = (cardId) => {
-  return fetch(`${config.baseUrl}${endpoints.cards}/${cardId}`, {
-    method: 'DELETE',
-    headers: config.headers
-  })
-};*/
-
 const sendCardDeletion = (cardId) => {
   return request(`${endpoints.cards}/${cardId}`, {
     method: 'DELETE',

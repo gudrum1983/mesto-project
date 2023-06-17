@@ -13,17 +13,6 @@ const avatar = document.querySelector('.profile__avatar');
 const nameUser = document.querySelector('.profile__name');
 const statusUser = document.querySelector('.profile__status');
 
-
-const selectorsForPopup = {
-  overlayClass: 'popup__shadow',
-  openButtonClass: 'popup__button-close',
-  openingPopupSelector: '.popup_opened',
-  openingPopupClass: 'popup_opened',
-};
-
-
-
-
 export {
   formAvatar,
   formProfile,
