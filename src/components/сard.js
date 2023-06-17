@@ -1,9 +1,12 @@
 /**
  * ИМПОРТЫ
  * */
-import {cardContainer, popupPlace, showError, result} from "./utils";
+import {showError} from "./utils";
 import {openPopup} from "./modal";
 import {sendStatusLike} from "./api";
+import {openDelete} from "./index";
+import {cardContainer, formAvatar, popupPlace} from "./constants"
+import {checkErrorsForm} from "./validate";
 
 
 /**
@@ -13,6 +16,8 @@ const cardTemplate = document.querySelector('#itemTemplate').content;
 const popupZoom = document.querySelector('.popup_type_zoom');
 const imgPopupZoom = popupZoom.querySelector('.zoom__photo');
 const titlePopupZoom = popupZoom.querySelector('.zoom__caption');
+const popupDelete = document.querySelector('.popup_type_delete');
+const buttonSubmitDelete = popupDelete.querySelector('.form__button-submit');
 
 /**
  * Функция __checkMyLike()__ проверяет есть ли в массиве лайков лайк юзера с ID
@@ -69,12 +74,13 @@ function getCard(cardName, cardLink, cardId, cardLikes, hasMyLike, myCard) {
  * Функция __createCard()__ добавляет карточку в контейнер
  *  @param {object} card - карточка
  *  @param {string} userId - идентификатор юзера
+ *  @param {boolean} isReverse - идентификатор обратного порядка постоения карточек
  */
-function createCard(card, userId) {
+function createCard(card, userId, isReverse) {
   const hasMyLike = checkMyLike(card.likes, userId);
   const myCard = (card.owner._id === userId);
   const cardElement = getCard(card.name, card.link, card._id, card.likes, hasMyLike, myCard);
-  cardContainer.prepend(cardElement);
+  isReverse ? cardContainer.append(cardElement) : cardContainer.prepend(cardElement);
 };
 
 /**
@@ -92,8 +98,8 @@ function openZoom(srcValue, titleValue) {
 };
 
 function markCard(buttonTrash) {
-  const findDelCards = document.querySelectorAll('[data-deleted = "true"]');
-  if (findDelCards.length >= 1) {
+  const findDelCards = document.querySelectorAll('.card[data-deleted = "true"]');
+  if (findDelCards.length > 0) {
     findDelCards.forEach(item => {
       delete item.dataset.deleted
     })
@@ -101,6 +107,9 @@ function markCard(buttonTrash) {
   const cardElement = buttonTrash.closest('.card');
   cardElement.dataset.deleted = true;
 }
+
+
+
 
 /**
  * Функция __openDeleteCard()__ открывает модальное окно подтверждения удаления
@@ -110,17 +119,16 @@ function markCard(buttonTrash) {
  */
 function prepareDeleteCard(buttonTrash, cardId) {
   markCard(buttonTrash);
-  const popupDelete = document.querySelector('.popup_type_delete');
-  const buttonSubmit = popupDelete.querySelector('.form__button-submit');
-  buttonSubmit.value = cardId;
-  openPopup(popupDelete);
+  buttonSubmitDelete.value = cardId;
+  buttonSubmitDelete.disabled = false;
+  openDelete();
 };
 
 /**
  * Функция __removeCard()__ удаляет помеченную на удаление карточку
  */
 function removeCard() {
-  const cardElement = document.querySelector('.card-deleted');
+  const cardElement = document.querySelector('.card[data-deleted = "true"]');
   cardElement.remove();
 }
 
@@ -133,7 +141,6 @@ function removeCard() {
  */
 function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
   sendStatusLike(cardID, activeLike)
-    .then(result)
     .then(data => {
       numberLikeElement.textContent = (data.likes.length);
       if (activeLike) {
@@ -142,9 +149,7 @@ function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
         likeElement.classList.add('card__like_active');
       }
     })
-    .catch((err) => {
-      showError(err);
-    })
+    .catch(showError);
 }
 
 
@@ -166,11 +171,11 @@ function toggleLike(like, cardNumberLike, cardID) {
  */
 function buildCards(cards, userID) {
   cards.forEach(function (card) {
-    createCard(card, userID);
+    createCard(card, userID, true);
   });
 }
 
 /**
  * ЭКСПОРТ
  * */
-export {popupPlace, createCard, buildCards, checkMyLike, removeCard};
+export {popupPlace, createCard, buildCards, checkMyLike, removeCard, popupDelete, buttonSubmitDelete};

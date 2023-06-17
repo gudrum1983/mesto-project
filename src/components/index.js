@@ -2,8 +2,8 @@
  * ИМПОРТЫ
  */
 import '/src/pages/index.css'; // импорт главного файла стилей
+import {showError} from "./utils";
 import {
-  selectorsForValid,
   formProfile,
   popupPlace,
   formPlace,
@@ -11,167 +11,180 @@ import {
   formAvatar,
   popupAvatar,
   nameUser,
-  statusUser,
-  fillEntireProfile, showError, fillProfile, fillAvatar, result
-} from "./utils";
-import {openPopup, closePopup, closePopupUX} from './modal.js';
+  statusUser, avatar,
+} from "./constants"
+import {openPopup, closePopup} from './modal.js';
 import {checkErrorsForm, enableValidation,} from "./validate";
 import {sendProfile, sendNewCard, sendCardDeletion, sendAvatar, getTotalInfo} from "./api";
-import {buildCards, removeCard} from "./сard";
+import {buildCards, createCard, removeCard, popupDelete, } from "./сard";
 
 /**
  * КОНСТАНТЫ
  */
 let userID = null;
-const openPopupProfileButton = document.querySelector('.profile__button-edit');
-const openPopupPlaceButton = document.querySelector('.profile__button-add');
-const openPopupAvatarButton = document.querySelector('.profile__avatar-button')
-const nameInputFormProfile = formProfile.querySelector('[name="user-name"]');
-const statusInputFormProfile = formProfile.querySelector('[name="user-status"]');
+const openingButtonPopupProfile = document.querySelector('.profile__button-edit');
+const openingButtonPopupPlace = document.querySelector('.profile__button-add');
+const openingButtonPopupAvatar = document.querySelector('.profile__avatar-button')
 const popupProfile = document.querySelector('.popup_type_profile');
-const titleInputFormPlace = formPlace.querySelector('[name="title"]');
-const linkInputFormPlace = formPlace.querySelector('[name="link-img"]');
-const linkInputFormAvatar = formAvatar.querySelector('[name="link-avatar"]');
+const inputNameFormProfile = formProfile.querySelector('[name="user-name"]');
+const inputStatusFormProfile = formProfile.querySelector('[name="user-status"]');
+const inputTitleFormPlace = formPlace.querySelector('[name="title"]');
+const inputLinkFormPlace = formPlace.querySelector('[name="link-img"]');
+const inputLinkFormAvatar = formAvatar.querySelector('[name="link-avatar"]');
 
-
-
-/**
- * Функция __updateAvatar()__ отправляет данные о юзере и обновляет данные на страничке
- * @param {string} linkAvatar - ссылка на картинку
- * @param {element} buttonSubmit - - кнопка "сохранить"
- */
-function updateAvatar(linkAvatar, buttonSubmit) {
-  sendAvatar(linkAvatar, buttonSubmit)
-    .then(result)
-    .then(data => {
-      fillAvatar(data.avatar);
-    })
-    .catch((err) => {
-      showError(err);
-    })
-    .finally(() => {
-      closePopupUX(buttonSubmit);
-    })
-}
-
-/**
- * Функция __handleFormSubmitAvatar()__ изменяет поведение кнопки сохранить
- * в модальном окне место
- * @param {Event} evt - событие
- */
-function handleFormSubmitAvatar(evt) {
-  evt.preventDefault();
-  evt.submitter.textContent = 'Сохранение...';
-  evt.submitter.disabled = true;
-  updateAvatar(linkInputFormAvatar.value, evt.submitter);
+const selectorsForValid = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button-submit',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error_active'
 };
 
 /**
- * Функция __addCard()__ отправляет данные о юзере и обновляет данные на страничке
- * @param {string} linkImgCard - ссылка на картинку карточки
- * @param {string} titleCard - название карточки
- * @param {element} buttonSubmit - кнопка сохранить
+ * Функция __fillProfile()__ заполняет поля профиля на страничке
+ *  @param {string} name - имя юзера
+ *  @param {string} about - значение информации о юзере
  */
-function addCard(linkImgCard, titleCard, buttonSubmit) {
-  sendNewCard(linkImgCard, titleCard)
-    .then(result)
-    .then(data => {
-      buildCards([data], userID);
-    })
-    .catch((err) => {
-      showError(err);
-    })
-    .finally(() => {
-      closePopupUX(buttonSubmit);
-    })
+function fillProfile(name, about) {
+  nameUser.textContent = name;
+  statusUser.textContent = about;
 }
 
 /**
- * Функция __handleFormSubmitPlace()__ изменяет поведение кнопки "сохранить"
- * в модальном окне место
- * @param {Event} evt - событие
+ * Функция __insertAvatar()__ вставляет аватарку пользователя
+ *  @param {string} linkAvatar - ссылка на аватар
  */
-function handleFormSubmitPlace(evt) {
-  evt.preventDefault();
-  evt.submitter.textContent = 'Сохранение...';
-  evt.submitter.disabled = true;
-  addCard(linkInputFormPlace.value, titleInputFormPlace.value, evt.submitter);
-};
-
-/**
- * Функция __updateProfile()__ отправляет данные о юзере и обновляет данные на страничке
- * @param {string} nameUser - имя пользователя
- * @param {string} aboutUser - информация о пользователе
- * @param {element} buttonSubmit - кнопка сохранить
- */
-function updateProfile(nameUser, aboutUser, buttonSubmit) {
-  sendProfile(nameUser, aboutUser)
-    .then(result)
-    .then(user => {
-      fillProfile(user.name, user.about);
-    })
-    .catch((err) => {
-      showError(err);
-    })
-    .finally(() => {
-      closePopupUX(buttonSubmit);
-    })
+function insertAvatar(linkAvatar) {
+  avatar.src = linkAvatar;
 }
 
-
 /**
- * Функция __handleFormSubmitProfile()__ изменяет поведение кнопки "сохранить"
- * в модальном окне профайл
- * @param {Event} evt - событие
+ * Функция __renderLoading()__ универсальная функция управления текстом кнопки
+ * @param {boolean} isLoading - признак загрузки
+ * @param {element} button - кнопка Submit
+ * @param {string} buttonText - исходный текст кнопки
+ * @param {string} loadingText - текст кнопки для визуализации загрузки
  */
-function handleFormSubmitProfile(evt) {
-  evt.preventDefault();
-  if (nameUser.textContent !== nameInputFormProfile.value || statusUser.textContent !== statusInputFormProfile.value) {
-    evt.submitter.textContent = 'Сохранение...';
-    evt.submitter.disabled = true;
-    updateProfile(nameInputFormProfile.value, statusInputFormProfile.value, evt.submitter);
+function renderLoading(isLoading, button, buttonText = 'Сохранить', loadingText = 'Сохранение...') {
+  if (isLoading) {
+    button.disabled = isLoading
+    button.textContent = loadingText
   } else {
-    closePopup(popupProfile)
+    button.textContent = buttonText
   }
-};
-
-/**
- * Функция __deleteCard()__ отправляет данные о юзере и обновляет данные на страничке
- * @param {string} cardID - идентификатор пользователя
- */
-function deleteCard(cardID) {
-  sendCardDeletion(cardID)
-    .then(res => {
-      if (res.ok) {
-        return removeCard();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch((err) => {
-      showError(err);
-    })
 }
 
 /**
- * Функция __handleFormSubmitDelete()__ изменяет поведение кнопки "сохранить"
- * в модальном окне на удаление карточки
- * @param {Event} evt - событие
+ * Функция __handleSubmit()__ универсальная функция принимает функцию запроса, объект события и текст во время загрузки
+ * @param {request} request - функция запроса к API
+ * @param {event} evt - событие Submit
+ * @param {string} loadingText - текст кнопки для визуализации загрузки
  */
-function handleFormSubmitDelete(evt) {
+function handleSubmit(request, evt, loadingText = 'Сохранение...') {
+  // всегда нужно предотвращать перезагрузку формы при сабмите
   evt.preventDefault();
-  evt.submitter.disabled = false;
-  const popup = evt.target.closest('.popup');
+  const submitButton = evt.submitter;
+  const initialText = submitButton.textContent;
+  renderLoading(true, submitButton, initialText, loadingText);
+  request()
+    .then(() => {
+      evt.target.reset();
+    })
+    .catch((err) => {
+      console.error(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      renderLoading(false, submitButton, initialText);
+
+    });
+}
+
+/**
+ * Функция __handleSubmitFormPlace()__ функция обработки кнопки Submit формы Place.
+ * Создает запрос и передает его в универсальную функцию
+ * @param {event} evt - событие Submit
+ */
+function handleSubmitFormPlace(evt) {
+  // создаем функцию, которая возвращает промис, так как любой запрос возвращает его
+  function makeRequest() {
+    // return позволяет потом дальше продолжать цепочку `then, catch, finally`
+    return sendNewCard(inputLinkFormPlace.value, inputTitleFormPlace.value)
+      .then(data => {
+        createCard(data, userID, false);
+        closePopup(popupPlace);
+      })
+  }
+
+  handleSubmit(makeRequest, evt);
+}
+
+/**
+ * Функция __handleSubmitFormAvatar()__ функция обработки кнопки Submit формы Avatar.
+ * Создает запрос и передает его в универсальную функцию
+ * @param {event} evt - событие Submit
+ */
+function handleSubmitFormAvatar(evt) {
+  // создаем функцию, которая возвращает промис, так как любой запрос возвращает его
+  function makeRequest() {
+    // return позволяет потом дальше продолжать цепочку `then, catch, finally`
+    return sendAvatar(inputLinkFormAvatar.value)
+      .then(data => {
+        insertAvatar(data.avatar);
+        closePopup(popupAvatar);
+      })
+  }
+
+  handleSubmit(makeRequest, evt);
+}
+
+/**
+ * Функция __handleSubmitFormProfile()__ функция обработки кнопки Submit формы Profile.
+ * Создает запрос и передает его в универсальную функцию.
+ * @param {event} evt - событие Submit
+ */
+function handleSubmitFormProfile(evt) {
+  // создаем функцию, которая возвращает промис, так как любой запрос возвращает его
+  function makeRequest() {
+    // return позволяет потом дальше продолжать цепочку `then, catch, finally`
+    return sendProfile(inputNameFormProfile.value, inputStatusFormProfile.value)
+      .then((user) => {
+        closePopup(popupProfile)
+        fillProfile(user.name, user.about);
+      });
+  }
+
+  handleSubmit(makeRequest, evt);
+}
+
+
+/**
+ * Функция __handleSubmitFormDelete()__ функция обработки кнопки Submit формы Delete.
+ * Создает запрос и передает его в универсальную функцию.
+ * @param {event} evt - событие Submit
+ */
+function handleSubmitFormDelete(evt) {
   const cardID = evt.submitter.value;
-  deleteCard(cardID);
-  closePopup(popup);
-};
+
+  function makeRequest() {
+    return sendCardDeletion(cardID)    // return позволяет потом дальше продолжать цепочку `then, catch, finally`
+      .then((res) => {
+        console.log(res.message)
+        removeCard();
+        closePopup(popupDelete);
+      })
+  }
+
+  handleSubmit(makeRequest, evt, 'Удаление...');
+}
+
 
 /**
  * Функция __openProfilePopup()__ запускает процедуру открытия модального окна профайл
  * */
 function openProfilePopup() {
-  nameInputFormProfile.value = nameUser.textContent;
-  statusInputFormProfile.value = statusUser.textContent;
+  inputNameFormProfile.value = nameUser.textContent;
+  inputStatusFormProfile.value = statusUser.textContent;
   checkErrorsForm(formProfile, selectorsForValid);
   openPopup(popupProfile);
 };
@@ -192,31 +205,38 @@ function openAvatarPopup() {
   openPopup(popupAvatar);
 }
 
+function openDelete() {
+  checkErrorsForm(formDelete, selectorsForValid);
+  openPopup(popupDelete);
+}
+
 /**
  * Функция __buildPage()__ строит страничку
  */
 function buildPage() {
   getTotalInfo()
     .then(([userData, cardsData]) => {
+      console.log(userData)
+      console.log(cardsData)
       userID = userData._id;
-      fillEntireProfile(userData);
-      buildCards(cardsData.reverse(), userID);
+      fillProfile(userData.name, userData.about);
+      insertAvatar(userData.avatar);
+      buildCards(cardsData, userID);
     })
-    .catch((err) => {
-      showError(err);
-    })
+    .catch(showError)
 }
 
 /**
  * СЛУШАТЕЛИ
  * */
-openPopupProfileButton.addEventListener('click', openProfilePopup);
-openPopupPlaceButton.addEventListener('click', openPlacePopup);
-openPopupAvatarButton.addEventListener('click', openAvatarPopup)
-formProfile.addEventListener('submit', handleFormSubmitProfile);
-formPlace.addEventListener('submit', handleFormSubmitPlace);
-formDelete.addEventListener('submit', handleFormSubmitDelete);
-formAvatar.addEventListener('submit', handleFormSubmitAvatar);
+openingButtonPopupProfile.addEventListener('click', openProfilePopup);
+openingButtonPopupPlace.addEventListener('click', openPlacePopup);
+openingButtonPopupAvatar.addEventListener('click', openAvatarPopup);
+
+formProfile.addEventListener('submit', handleSubmitFormProfile);
+formPlace.addEventListener('submit', handleSubmitFormPlace);
+formAvatar.addEventListener('submit', handleSubmitFormAvatar);
+formDelete.addEventListener('submit', handleSubmitFormDelete);
 
 /**
  * ВЫЗОВЫ ФУНКЦИИ ДЛЯ ВАЛИДАЦИИ И ОТРИСОВКИ СТРАНИЧКИ
@@ -224,4 +244,4 @@ formAvatar.addEventListener('submit', handleFormSubmitAvatar);
 enableValidation(selectorsForValid);
 buildPage();
 
-export {userID}
+export {userID, openDelete}

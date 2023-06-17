@@ -1,61 +1,57 @@
-import {checkErrorsForm} from "./validate";
-
 /**
- * Функция __closePopup()__ закрывает попап
- * @param {Element} popup - попап
+ * Константа __selectorsForModal__ модержит селекторы и классы для работы с открытием и закрытием модальных окон.
+ * @type {object}
  */
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', keyHandler);
-  popup.removeEventListener('click', clickHandler);
-
+const selectorsForModal = {
+  overlayClass: 'popup__shadow',
+  closeButtonClass: 'popup__button-close',
+  openingPopupClass: 'popup_opened',
+  openingPopupSelector: '.popup_opened',
 };
+
 /**
- * Функция __clickHandler()__ запускает закрытие попапа по клику на оверлей
+ * Функция __handlePopupClose()__ запускает закрытие модального окна по клику на оверлей и по кнопке закрытия
  * @param {Event} evt - событие
  */
-function clickHandler(evt) {
+function handlePopupClose(evt) {
   const evTarget = evt.target;
-  if (evTarget.classList.contains('popup__shadow') || evTarget.classList.contains('popup__button-close')) {
+  if (evTarget.classList.contains(selectorsForModal.overlayClass) || evTarget.classList.contains(selectorsForModal.closeButtonClass)) {
     closePopup(evt.currentTarget);
   }
 };
 
 /**
- * Функция __keyHandler()__ запускает закрытие попапа по кнопке ESC
+ * Функция __handleEscape()__ запускает закрытие модального окна по кнопке ESC
  * @param {Event} evt - событие
  */
-function keyHandler(evt) {
+function handleEscape(evt) {
   if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
+    closePopup(document.querySelector(selectorsForModal.openingPopupSelector));
   }
   ;
 };
 
 /**
- * Функция __openPopup()__ открывает попап
- * @param {Element} popup - попап
+ * Функция __openPopup()__ открывает модальное окно
+ * @param {Element} popup - модальное окно
  */
 function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keyup', keyHandler);
-  popup.addEventListener('click', clickHandler);
+  popup.classList.add(selectorsForModal.openingPopupClass);
+  document.addEventListener('keyup', handleEscape);
+  popup.addEventListener('click', handlePopupClose);
 };
 
 /**
- * Функция __closedPopupUX()__ закрывает попап и возвращает значения кнопке сабмит
- * @param {Element} button - кнопка сабмита
+ * Функция __closePopup()__ закрывает модальное окно
+ * @param {Element} popup - модальное окно
  */
-function closePopupUX(button) {
-  button.textContent = 'Сохранить';
-  const popup = button.closest('.popup');
-  const form = popup.querySelector('.form__admin');
-  form.reset();
-  button.disabled = false;
-  closePopup(popup);
-}
+function closePopup(popup) {
+  popup.classList.remove(selectorsForModal.openingPopupClass);
+  document.removeEventListener('keyup', handleEscape);
+  popup.removeEventListener('click', handlePopupClose);
+};
 
 /**
  * ЭКСПОРТ
  */
-export {openPopup, closePopup, closePopupUX, keyHandler, clickHandler};
+export {openPopup, closePopup};
