@@ -41,12 +41,12 @@ function request(endpointText, options) {
 /**
  * Константа-шаблон __getTotalInfo()__
  */
-const getTotalInfo = () => {
+/*const getTotalInfo = () => {
   return Promise.all([
     request(endpoints.user, {headers: config.headers}),
     request(endpoints.cards, {headers: config.headers})
   ])
-}
+}*/
 
 /**
  * Константа-шаблон __sendProfile()__ функции подключения к серверу через fetch
@@ -54,7 +54,7 @@ const getTotalInfo = () => {
  * @param {string} newNameUser - новое значение имени пользователя
  * @param {string} newAboutUser - новое значение информации о пользователе
  */
-const sendProfile = (newNameUser, newAboutUser) => {
+/*const sendProfile = (newNameUser, newAboutUser) => {
   return request(endpoints.user, {
     method: 'PATCH',
     headers: config.headers,
@@ -63,14 +63,14 @@ const sendProfile = (newNameUser, newAboutUser) => {
       about: newAboutUser,
     })
   })
-}
+}*/
 
 /**
  * Константа-шаблон __sendAvatar()__ функции подключения к серверу через fetch
  * и отправки данных о новой аватарке пользователя
  * @param {string} newAvatar - новая ссылка на картинку пользователя
  */
-const sendAvatar = (newAvatar) => {
+/*const sendAvatar = (newAvatar) => {
   return request(endpoints.avatar, {
     method: 'PATCH',
     headers: config.headers,
@@ -78,14 +78,14 @@ const sendAvatar = (newAvatar) => {
       avatar: newAvatar,
     })
   })
-}
+}*/
 
 /**
  * Константа-шаблон __sendPlace()__ функции подключения к серверу через fetch и отправки данных о новой карточке
  * @param {string} linkNewCard - новая ссылка на картинку места
  * @param {string} nameNewCard - новое имя для картинки места
  */
-const sendNewCard = (linkNewCard, nameNewCard) => {
+/*const sendNewCard = (linkNewCard, nameNewCard) => {
   return request(endpoints.cards, {
     method: 'POST',
     headers: config.headers,
@@ -94,19 +94,19 @@ const sendNewCard = (linkNewCard, nameNewCard) => {
       link: linkNewCard,
     })
   })
-}
+}*/
 
 /**
  * Константа-шаблон __sendCardDeletion()__ функции подключения к серверу через fetch
  * и удаления данных карточки из массива карточек
  * @param {string} cardId - идентификатор пользователя
  */
-const sendCardDeletion = (cardId) => {
+/*const sendCardDeletion = (cardId) => {
   return request(`${endpoints.cards}/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
   })
-}
+}*/
 
 /**
  * Константа-шаблон __sendStatusLike()__ функции подключения к серверу через fetch
@@ -114,11 +114,12 @@ const sendCardDeletion = (cardId) => {
  * @param {string} cardId - идентификатор карточки
  * @param {boolean} activeLike - флаг активности лайк
  */
-const sendStatusLike = (cardId, activeLike) => {
+/*const sendStatusLike = (cardId, activeLike) => {
   return request(`${endpoints.likes}/${cardId}`, {
     method: activeLike ? 'DELETE' : 'PUT',
     headers: config.headers,
   })
-}
+}*/
 
-export {sendProfile, sendNewCard, sendCardDeletion, sendStatusLike, sendAvatar, getTotalInfo}
+
+/*export {}*/

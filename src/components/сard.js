@@ -3,7 +3,7 @@
  * */
 import {showError} from "./utils";
 import {openPopup} from "./modal";
-import {sendStatusLike} from "./api";
+import {api} from "./apiOOP";
 import {openDelete} from "./index";
 import {cardContainer, popupPlace} from "./constants"
 
@@ -140,7 +140,7 @@ function removeCard() {
  * @param {boolean} activeLike - признак активности лайка
  */
 function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
-  sendStatusLike(cardID, activeLike)
+  api.sendStatusLikeOOP(cardID, activeLike)
     .then(data => {
       numberLikeElement.textContent = (data.likes.length);
       if (activeLike) {

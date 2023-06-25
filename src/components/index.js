@@ -15,8 +15,8 @@ import {
 } from "./constants"
 import {openPopup, closePopup} from './modal.js';
 import {checkErrorsForm, enableValidation,} from "./validate";
-import {sendProfile, sendNewCard, sendCardDeletion, sendAvatar, getTotalInfo} from "./api";
-import {buildCards, createCard, removeCard, popupDelete, } from "./сard";
+import {buildCards, createCard, removeCard, popupDelete,} from "./сard";
+import {api} from "./apiOOP";
 
 /**
  * КОНСТАНТЫ
@@ -109,7 +109,7 @@ function handleSubmitFormPlace(evt) {
   // создаем функцию, которая возвращает промис, так как любой запрос возвращает его
   function makeRequest() {
     // return позволяет потом дальше продолжать цепочку `then, catch, finally`
-    return sendNewCard(inputLinkFormPlace.value, inputTitleFormPlace.value)
+    return api.sendNewCardOOP(inputLinkFormPlace.value, inputTitleFormPlace.value)
       .then(data => {
         createCard(data, userID, false);
         closePopup(popupPlace);
@@ -128,7 +128,7 @@ function handleSubmitFormAvatar(evt) {
   // создаем функцию, которая возвращает промис, так как любой запрос возвращает его
   function makeRequest() {
     // return позволяет потом дальше продолжать цепочку `then, catch, finally`
-    return sendAvatar(inputLinkFormAvatar.value)
+    return api.sendAvatarOOP(inputLinkFormAvatar.value)
       .then(data => {
         insertAvatar(data.avatar);
         closePopup(popupAvatar);
@@ -147,7 +147,7 @@ function handleSubmitFormProfile(evt) {
   // создаем функцию, которая возвращает промис, так как любой запрос возвращает его
   function makeRequest() {
     // return позволяет потом дальше продолжать цепочку `then, catch, finally`
-    return sendProfile(inputNameFormProfile.value, inputStatusFormProfile.value)
+    return api.sendProfileOOP(inputNameFormProfile.value, inputStatusFormProfile.value)
       .then((user) => {
         closePopup(popupProfile)
         fillProfile(user.name, user.about);
@@ -167,7 +167,7 @@ function handleSubmitFormDelete(evt) {
   const cardID = evt.submitter.value;
 
   function makeRequest() {
-    return sendCardDeletion(cardID)    // return позволяет потом дальше продолжать цепочку `then, catch, finally`
+    return api.sendCardDeletionOOP(cardID)    // return позволяет потом дальше продолжать цепочку `then, catch, finally`
       .then((res) => {
         console.log(res.message)
         removeCard();
@@ -214,7 +214,7 @@ function openDelete() {
  * Функция __buildPage()__ строит страничку
  */
 function buildPage() {
-  getTotalInfo()
+  api.getTotalInfoOOP()
     .then(([userData, cardsData]) => {
       console.log(userData)
       console.log(cardsData)
