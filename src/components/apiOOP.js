@@ -1,13 +1,8 @@
 class Api {
-  constructor({baseUrl, headers}) {
+  constructor({baseUrl, headers, endpoints}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._endpoints = {
-      user: '/users/me',
-      avatar: '/users/me/avatar',
-      cards: '/cards',
-      likes: '/cards/likes',
-    }
+    this._endpoints = endpoints
   }
 
   _checkResponse(response) {
@@ -79,5 +74,11 @@ export const api = new Api({
   headers: {
     authorization: '18a46d0a-0ce8-4b72-9f50-a83304389d2f',
     'Content-Type': 'application/json'
+  },
+  endpoints: {
+    user: '/users/me',
+    avatar: '/users/me/avatar',
+    cards: '/cards',
+    likes: '/cards/likes',
   }
 });
