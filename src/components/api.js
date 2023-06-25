@@ -2,41 +2,43 @@
  * Константа __config__ шаблоны настройки подключения через fetch.
  * @type {object}
  */
-const config = {
+/*const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-25',
   headers: {
     authorization: '18a46d0a-0ce8-4b72-9f50-a83304389d2f',
     'Content-Type': 'application/json'
   }
-}
+}*/
 
 /**
  * Константа __endpoints__ шаблоны конечных точек url.
  * @type {object}
  */
-const endpoints = {
+/*const endpoints = {
   user: '/users/me',
   avatar: '/users/me/avatar',
   cards: '/cards',
   likes: '/cards/likes',
-}
+}*/
 
 /**
  * Функция __checkResponse()__
  * @param {response} response - ответ
  */
-function checkResponse(response) {
+/*function checkResponse(response) {
   return response.ok ? response.json() : promise.reject('Ошибка подключения к серверу');
-}
+}*/
 
 /**
  * Функция __request()__
  * @param {string} endpointText - хвостовая часть Url
  * @param {Object} options - настройки подключения (options)
  */
+/*
 function request(endpointText, options) {
   return fetch(`${config.baseUrl}${endpointText}`, options).then(checkResponse)
 }
+*/
 
 /**
  * Константа-шаблон __getTotalInfo()__
@@ -121,5 +123,3 @@ function request(endpointText, options) {
   })
 }*/
 
-
-/*export {}*/
