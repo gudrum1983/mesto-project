@@ -6,6 +6,7 @@ import {openPopup} from "./modal";
 import {api} from "./apiOOP";
 import {openDelete} from "./index";
 import {cardContainer, popupPlace} from "./constants"
+import Card from "./cardOOP";
 
 
 
@@ -44,7 +45,7 @@ function checkMyLike(likesArray, ID) {
  * @param {boolean} hasMyLike - признак наличия моего лайк
  * @param {boolean} myCard - признак является ли карточка моей
  */
-function getCard(cardName, cardLink, cardId, cardLikes, hasMyLike, myCard) {
+/*function getCard(cardName, cardLink, cardId, cardLikes, hasMyLike, myCard) {
   const newCardElement = cardTemplate.cloneNode(true);
   //заполняем картинку карточки
   const cardImage = newCardElement.querySelector('.card__photo');
@@ -68,7 +69,7 @@ function getCard(cardName, cardLink, cardId, cardLikes, hasMyLike, myCard) {
   }
   newCardElement.querySelector('.card__title').textContent = cardName;
   return newCardElement;
-}
+}*/
 
 /**
  * Функция __createCard()__ добавляет карточку в контейнер
@@ -79,7 +80,14 @@ function getCard(cardName, cardLink, cardId, cardLikes, hasMyLike, myCard) {
 function createCard(card, userId, isReverse) {
   const hasMyLike = checkMyLike(card.likes, userId);
   const myCard = (card.owner._id === userId);
-  const cardElement = getCard(card.name, card.link, card._id, card.likes, hasMyLike, myCard);
+  /*const cardElement = getCard(card.name, card.link, card._id, card.likes, hasMyLike, myCard);*/
+  const cardElementNew = new Card({cardName:card.name,
+    cardLink:card.link,
+    cardID:card._id,
+    cardLikes:card.likes,
+    hasMyLike:hasMyLike,
+    myCard:myCard}, '.cardTemplate');
+  const cardElement = cardElementNew._getElementOOP();
   isReverse ? cardContainer.append(cardElement) : cardContainer.prepend(cardElement);
 };
 
@@ -90,14 +98,14 @@ function createCard(card, userId, isReverse) {
  * @param {String} srcValue - ссылка на изображение
  * @param {String} titleValue - ссылка на изображение
  */
-function openZoom(srcValue, titleValue) {
+/*function openZoom(srcValue, titleValue) {
   imgPopupZoom.setAttribute('alt', `Визуальное отображение места - ${titleValue}`);
   imgPopupZoom.setAttribute('src', srcValue);
   titlePopupZoom.textContent = titleValue;
   openPopup(popupZoom);
-};
+};*/
 
-function markCard(buttonTrash) {
+/*function markCard(buttonTrash) {
   const findDelCards = document.querySelectorAll('.card[data-deleted = "true"]');
   if (findDelCards.length > 0) {
     findDelCards.forEach(item => {
@@ -106,7 +114,7 @@ function markCard(buttonTrash) {
   }
   const cardElement = buttonTrash.closest('.card');
   cardElement.dataset.deleted = true;
-}
+}*/
 
 
 
@@ -117,12 +125,12 @@ function markCard(buttonTrash) {
  *  @param {Element} buttonTrash - дом элемент кнопка удаления карточки
  *  @param {string} cardId - идентификатор карточки
  */
-function prepareDeleteCard(buttonTrash, cardId) {
+/*function prepareDeleteCard(buttonTrash, cardId) {
   markCard(buttonTrash);
   buttonSubmitDelete.value = cardId;
   buttonSubmitDelete.disabled = false;
   openDelete();
-};
+};*/
 
 /**
  * Функция __removeCard()__ удаляет помеченную на удаление карточку
@@ -139,7 +147,7 @@ function removeCard() {
  * @param {string} cardID - идентификатор карточки
  * @param {boolean} activeLike - признак активности лайка
  */
-function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
+/*function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
   api.sendStatusLikeOOP(cardID, activeLike)
     .then(data => {
       numberLikeElement.textContent = (data.likes.length);
@@ -150,7 +158,7 @@ function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
       }
     })
     .catch(showError);
-}
+}*/
 
 
 /**
@@ -159,10 +167,10 @@ function updateStatusLike(cardID, likeElement, numberLikeElement, activeLike) {
  * @param {Element} cardNumberLike - элемент лайка цифра
  * @param {string} cardID - идентификатор карточки
  */
-function toggleLike(like, cardNumberLike, cardID) {
+/*function toggleLike(like, cardNumberLike, cardID) {
   const isHasActiveLike = like.classList.contains('card__like_active')
   updateStatusLike(cardID, like, cardNumberLike, isHasActiveLike);
-};
+};*/
 
 /**
  * Функция __buildingCards()__ обрабатывает полученный массив и запускает создание карточек
